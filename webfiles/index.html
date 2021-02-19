@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- ===============================================-->
+    <!--    Document Title-->
+    <!-- ===============================================-->
+    <title>budz.finance | High Yield DeFi Platform</title>
+
+
+    <!-- ===============================================-->
+    <!--    Favicons-->
+    <!-- ===============================================-->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicons/favicon-16x16.png">
+    <link rel="manifest" href="assets/img/favicons/site.webmanifest">
+    <link rel="mask-icon" href="assets/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+
+    <!-- ===============================================-->
+    <!--    Stylesheets-->
+    <!-- ===============================================-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="assets/lib/prismjs/prism.css" rel="stylesheet">
+    <link href="assets/lib/loaders.css/loaders.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,300,400,500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <link href="assets/lib/remodal/remodal.css" rel="stylesheet">
+    <link href="assets/lib/remodal/remodal-default-theme.css" rel="stylesheet">
+    <link href="assets/lib/owl.carousel/owl.carousel.css" rel="stylesheet">
+    <link href="assets/lib/lightbox2/css/lightbox.css" rel="stylesheet">
+    <link href="assets/css/theme.css?ver=1.0.2" rel="stylesheet">
+
+  </head>
+
+
+  <body>
+
+    <!-- ===============================================-->
+    <!--    Main Content-->
+    <!-- ===============================================-->
+    <main>
+      <!-- ============================================-->
+      <!-- Preloader ==================================-->
+      <div id="preloader">
+        <div class="loader"><span></span><span></span><span></span><span></span></div>
+      </div>
+      <!-- ============================================-->
+      <!-- End of Preloader ===========================-->
+      <div id="errorMsg"></div>
+      <div id="successMsg"></div>
+
+      <!-- ============================================-->
+      <!-- <section> begin ============================-->
+      <section class="p-0" id="home">
+        <div style="z-index:9999; position:absolute; top:0px; left:0px; width:100%; height:40px;">
+          <coingecko-coin-price-marquee-widget  coin-ids="binancecoin, pancakeswap-token, yearn-finance, ethereum" currency="usd" background-color="#ffffff" locale="en"></coingecko-coin-price-marquee-widget>
+      </div>
+      <div style="z-index:9999; background-color:rgba(56,240,148,255); position: absolute; top:40px; left:0px; width:100%; box-shadow: 0px 2px 5px 0px black;">
+        <b id="refLinkInfo" style="color:black; margin-left:10px; text-align:left; float:left;"><i class="fa fa-users"></i>&nbsp;Your Referral Link: https://budz.finance/?r=<span class="addressBreak" id="referralAddress">YOUR_WALLET_ADDRESS</span></b>
+        <b id="refLinkInfo2" style="color:black;  margin-right:10px; text-align:right; float:right;"><i class="fa fa-info-circle"></i>&nbsp;<i> Earn a 5% copy of all harvests for both users.</i></b>
+      </div>
+        <div class="container-fluid p-0 minh-100vh">
+          <div class="position-relative px-3 w-lg-50 position-lg-absolute" id="baseContent">
+            <div class="row align-items-center minh-50vh justify-content-center py-5 minh-lg-100vh">
+              <div class="col-8 col-sm-6 text-center">
+                <a href="index.html">
+                  <img class="mb-5 img-fluid" src="assets/img/budz-logo.png" alt="">
+                </a>
+                <ul class="list-inline">
+                  <li class="list-inline-item">
+                    <a class="text-700 mx-2" href="https://t.me/budzfinance" target="_blank"> <span class="fab fa-telegram socialIcon"></span></a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a class="text-700 mx-2" href="https://twitter.com/budz_finance" target="_blank"> <span class="fab fa-twitter socialIcon"></span></a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a class="text-700 mx-2" href="https://medium.com" target="_blank"> <span class="fab fa-medium socialIcon"></span></a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a class="text-700 mx-2" href="https://github.com/getshwiftyinhere/budz-finance" target="_blank"> <span class="fab fa-github socialIcon"></span></a>
+                  </li>
+                </ul>
+                <b style="color:white; font-size:18px"><i class="fa fa-rocket"></i>&nbsp;PANCAKESWAP EXCHANGE LAUNCH @ 00:00 UTC 20th Feb 2021&nbsp;<i class="fa fa-clock"></i></b><br/>
+                <i style="color:white; font-size:14px;"><i class="fa fa-exclamation-triangle"></i>&nbsp;BEWARE OF FAKE TOKENS, THE OFFICIAL CONTRACT ADDRESS is 0x1e0A4D330b60BaBf3386125aeD73b81C6afC8526&nbsp;<i class="fa fa-exclamation-triangle"></i></i>
+              </div>
+            </div>
+          </div>
+          <div class="position-relative w-lg-50 position-lg-fixed four-item-two-column" id="gridNav">
+            <div class="row h-lg-100vh">
+              <div class="col-6 minh-25vh h-lg-50vh sidebar-item-wrapper py-5" data-content="about">
+                <div class="bg-holder" style="background-image:url(assets/img/navigation/jar.jpg);">
+                </div>
+                <!--/.bg-holder-->
+
+                <div class="sidebar-item">
+                  <img class="mb-2 mb-lg-3 nav-icon" src="assets/img/budz-icon-white.png" alt="">
+                  <h2 class="font-weight-bold text-white fs-1 fs-xl-3">About</h2>
+                </div>
+              </div>
+              <div class="col-6 minh-25vh h-lg-50vh sidebar-item-wrapper py-5" data-content="service">
+                <div class="bg-holder" style="background-image:url(assets/img/navigation/airdrop.jpg);">
+                </div>
+                <!--/.bg-holder-->
+
+                <div class="sidebar-item">
+                  <i style="color:white" class="mb-2 mb-lg-3 nav-icon fa fa-3x fa-seedling"></i>
+                  <h2 class="font-weight-bold text-white fs-1 fs-xl-3">Seedvault</h2>
+                </div>
+              </div>
+              <div class="col-6 minh-25vh h-lg-50vh sidebar-item-wrapper py-5" data-content="portfolio">
+                <div class="bg-holder" style="background-image:url(assets/img/navigation/weedfarm.jpg);">
+                </div>
+                <!--/.bg-holder-->
+
+                <div class="sidebar-item">
+                  <i style="color:white" class="mb-2 mb-lg-3 nav-icon fa fa-3x fa-cannabis"></i>
+                  <h2 class="font-weight-bold text-white fs-1 fs-xl-3">Growroom</h2>
+                </div>
+              </div>
+              <div class="col-6 minh-25vh h-lg-50vh sidebar-item-wrapper py-5" data-content="contact">
+                <div class="bg-holder" style="background-image:url(assets/img/navigation/budtender.webp);">
+                </div>
+                <!--/.bg-holder-->
+
+                <div class="sidebar-item">
+                  <i style="color:white" class="mb-2 mb-lg-3 nav-icon fa fa-3x fa-joint"></i>
+                  <h2 class="font-weight-bold text-white fs-1 fs-xl-3">Budtender</h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end of .container-->
+
+      </section>
+      <!-- <section> close ============================-->
+      <!-- ============================================-->
+
+
+      <div class="page position-absolute t-0 w-100" id="about">
+        <div class="row no-gutters minh-100vh">
+          <div class="col-lg-9 order-1 order-lg-0 page-content pt-6 pt-lg-0">
+
+
+            <!-- ============================================-->
+            <!-- <section> begin ============================-->
+            <section class="pt-5 pt-xl-7 pt-xxl-8">
+
+              <div class="container-fluid">
+                <div class="row justify-content-center pb-5" id="boots4-story">
+                  <div class="col-lg-10">
+                    <div class="text-center mb-5 mb-lg-6">
+                      <h2 class="fs-2 fs-sm-3"> <span class="font-weight-medium">Introducing </span> BUDZ <img src="assets/img/budz-icon.png" style="width:40px; transform: translate(0px,-5px);"/></h2>
+                      <hr class="hr-ornate col-8 col-md-9 col-xl-8 col-xxl-6" />
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6 mb-4 mb-md-0">
+                        <div class="bg-holder position-relative rounded py-8 py-md-0" style="background-image:url(assets/img/smoke.jpg);">
+                        </div>
+                        <!--/.bg-holder-->
+
+                        <div class="position-absolute t-0 l-0 h-100 w-100 d-flex align-items-center justify-content-center">
+                          <img style="width:85%;" class="video-modal text-white" src="/assets/img/budz-logo-green.png" ></img>
+                        </div>
+                      </div>
+                      <div class="col-md-6 pl-3 pl-md-4">
+                        <h4>Welcome to budz.finance...</h4>
+                        <p class="lead my-3">
+                          <i class="fa fa-cannabis"></i>&nbsp;Seeding an innovative decentralized platform offering high yield options. Utilizing a symbiotic relationship between burning, staking and farming through DeFi to maximise growth and sustainability. 
+                          </p>
+                        <p class="column-xxl-2 mb-0"><b>budz.finance</b> was founded on the mantra that higher is better. Farmers need yield, our LP strains keep you soaring high while dealing some of the dopest yield around.</br><b>BUDZ is a financial experiment</b>, created by a team of budding enthusiasts with the aim to bring cannabis to the world of farming, where it belongs.</p>
+                        <br/><br/></br.><p class="column-xxl-1 mb-0">We chose <b>Binance Smart Chain</b> to launch upon allowing for low fees, high security and fast transaction speed. See <a href="https://www.binance.com/en/blog/421499824684901055/Get-Started-on-Binance-Smart-Chain-in-60-Seconds">here for setup info</a>.<br/>Our contract code is open-source and <a href="https://bscscan.com/address/0x1e0A4D330b60BaBf3386125aeD73b81C6afC8526#code">verified on bscscan</a>, please use at your own risk.
+                        </p>
+                      </div>
+                    </div>
+                    <br/><br/><br/>
+                    <div class="row">
+                      <p class="column-xxl-1 mb-0">
+                        <b>Doing your own research is vital in the cryptosphere, but if you're too high rn, we get it bro. 👊</b><br/>
+                        <i>Here's how things work...</i><br/><br/>
+                        <ul>
+                          <li>
+                            <i style="width:25px;"class="fa fa-leaf"></i>&nbsp;<b>Farming BUDZ offers a high variable APY</b>, allowing users to utilize a multitude of liquidity tokens for yield, paid in BUDZ. Farming uses an APY halvening period, starting at 7 days, which is then extended a further 7 days every new period (e.g. 7, 14, 21, 28, 35 days), any user can call the halvening. APY for farming is calculated using the combined $ value of your LP tokens, and the $ value of total BUDZ farmed per year. This gives a variable APY, price goes up, farming APY follows. 
+                          </li><br/>
+                          <li>
+                            <i style="width:25px;" class="fa fa-lock"></i>&nbsp;<b>Staking BUDZ accrues interest at a minimum of 42.0% APY</b>, paid in BUDZ. Staking uses a minimum 7 day staking period from your most recent stake. Claim accrued interest at any point throughout the duration of your stake.
+                          </li><br/>
+                          <li>
+                            <i style="width:25px;" class="fa fa-burn"></i>&nbsp;<b>Burning BUDZ pumps the price and maximizes staking returns.</b> BUDZ achieves this by automatically burning a copy of the amount burnt in the BUDZ/BNB pair contract of Pancakeswap. This increases price alongside using your burnt amount as a metric to calculate your individual staking APY up to a maximum of 2x (84.0%), achieve max staking APY by burning a total of 50% of your staked balance!
+                          </li><br/>
+                          <li>
+                            <i style="width:25px;" class="fa fa-users"></i>&nbsp;<b>Referring users to budz.finance rewards both users</b>, 5% copy of farming harvests and staking interest for referrer forever, users also receive a +5% bonus forever on farming harvests for using a reflink. A referrer must have used the platform in the past before referrering others (e.g. farming, staking). Users cannot self refer. 
+                          </li>
+                        </ul> 
+                        </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="row justify-content-center" id="fun-facts">
+                  <div class="col-lg-10">
+                    <div class="card-deck">
+                      <div class="card border-2x border-warning rounded py-5 px-3 text-center">
+                        <img class="position-absolute r-0 t-0" src="assets/img/shapes/1.png" alt="" style="width: 30%; border-top-right-radius: 1px;" />
+                        <i class="mx-auto fa fa-4x fa-coins" style="width:70px"></i><span id="totalSupplyCounter" class="d-block fs-3 mt-2 text-dark"></span>
+                        <h5>Total Supply</h5>
+                      </div>
+                      <div class="card border-2x border-danger rounded py-5 px-3 text-center">
+                        <img class="position-absolute b-0 r-0" src="assets/img/shapes/2.png" alt="" style="width: 70%; border-bottom-right-radius: 1px;" />
+                        <img class="mx-auto" src="assets/img/budz-icon.png" width="70" alt="" /><span id="priceCounter" class="d-block fs-3 mt-2 text-dark"></span>
+                        <h5>BUDZ Price</h5>
+                      </div>
+                      <div class="card border-2x border-primary rounded py-5 px-3 text-center">
+                        <img class="position-absolute t-0 l-0" src="assets/img/shapes/3.png" alt="" style="width: 70%;" />
+                        <i class="mx-auto fa fa-4x fa-dollar-sign" style="width:70px"></i><span id="marketCapCounter" class="d-block fs-3 mt-2 text-dark"></span>
+                        <h5>Marketcap</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- end of .container-->
+              <div class="row justify-content-center pt-4">
+                <div class="col-md-9 col-xl-8 col-xxl-6 text-center">
+                  <h2 class="font-weight-medium fs-2 fs-sm-3"> Become a <b>Connoisseur</b>&nbsp;<i style="color:rgba(56,240,148,255);" class="fa fa-cannabis"></i></h2>
+                  <hr class="hr-ornate col-8 col-md-9 col-xl-8 col-xxl-6" />
+                  <p class="lead">Take a hit &amp; start your trip to the moon.<i class="fa fa-rocket"></i></p>
+                  <a class="btn btn-success rounded mt-2 shadow-sm" href="https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x1e0A4D330b60BaBf3386125aeD73b81C6afC8526"><i class="fa fa-coins"></i>&nbsp;Buy BUDZ</a>
+                  <br/><br/>Verified Contract Code :  <a style="color:blue" href="https://bscscan.io/address/0x1e0A4D330b60BaBf3386125aeD73b81C6afC8526"><span class="addressBreak">https://bscscan.io/address/0x1e0A4D330b60BaBf3386125aeD73b81C6afC8526</span></a>
+                </div>
+              </div>
+            </section>
+            <!-- <section> close ============================-->
+            <!-- ============================================-->
+            <!-- ============================================-->
+            <!-- <section> begin ============================-->
+            <section class="pt-0 text-center">
+
+              <div class="container-fluid">
+                <div class="row justify-content-center">
+                  <div class="col-lg-10 col-xxl-7 col-xl-9">
+                    <div class="mb-5 mb-lg-6">
+                      <h2 class="fs-2 fs-sm-3"> <span class="font-weight-medium">Our </span> Roadmap</h2>
+                      <hr class="hr-ornate col-8 col-md-9 col-xl-8 col-xxl-6" />
+                    </div>
+                    <div class="row">
+                        <img class="" src="assets/img/divider.png" style="max-height:325px" width="100%" alt="" />
+                    </div>
+                  </div>
+                </div>
+                <br/><br/>
+                <div class="row justify-content-center">
+                  <div class="col-md-9 col-xl-8 col-xxl-6 text-center">
+                    <div class="mb-5 mb-lg-6">
+                      <h2 class="fs-2 fs-sm-3"> <span class="font-weight-medium">Not Our </span> Partners</h2>
+                      <hr class="hr-ornate col-8 col-md-9 col-xl-8 col-xxl-6" />
+                    </div>
+                    <div class="row align-items-center">
+                      <div class="col-4 col-sm-3 col-lg-3 mb-4">
+                        <img class="img-fluid" src="assets/img/logo/1.png" alt="" style="width: 7.5rem;" />
+                      </div>
+                      <div class="col-4 col-sm-3 col-lg-3 mb-4">
+                        <img class="img-fluid" src="assets/img/logo/2.png" alt="" style="width: 7.5rem;" />
+                      </div>
+                      <div class="col-4 col-sm-3 col-lg-3 mb-4">
+                        <img class="img-fluid" src="assets/img/logo/3.png" alt="" style="width: 7.5rem;" />
+                      </div>
+                      <div class="col-4 col-sm-3 col-lg-3 mb-4">
+                        <img class="img-fluid" src="assets/img/logo/4.png" alt="" style="width: 7.5rem;" />
+                      </div>
+                      <div class="col-4 col-sm-3 col-lg-3 mb-4">
+                        <img class="img-fluid" src="assets/img/logo/5.png" alt="" style="width: 5rem;" />
+                      </div>
+                      <div class="col-4 col-sm-3 col-lg-3 mb-4">
+                        <img class="img-fluid" src="assets/img/logo/6.png" alt="" style="width: 5rem;" />
+                      </div>
+                      <div class="col-4 col-sm-3 col-lg-3 mb-4">
+                        <img class="img-fluid" src="assets/img/logo/7.png" alt="" style="width: 5rem;" />
+                      </div>
+                      <div class="col-4 col-sm-3 col-lg-3 mb-4">
+                        <img class="img-fluid" src="assets/img/logo/8.png" alt="" style="width: 4rem;" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row justify-content-center pt-4">
+                  <div class="col-md-9 col-xl-8 col-xxl-6 text-center">
+                    <h2 class="font-weight-medium fs-2 fs-sm-3"> Join the Community&nbsp;<img src="assets/img/budz-icon.png" style="width:40px; transform: translate(0px,-5px);"/></h2>
+                    <hr class="hr-ornate col-8 col-md-9 col-xl-8 col-xxl-6" />
+                    <p class="lead">Collaborate with our budding enthusiasts &amp; veteran investors.</p>
+                    <a class="btn btn-primary rounded mt-2 shadow-sm" href="https://t.me/budzfinance"><i class="fab fa-telegram"></i>&nbsp;Telegram</a>
+                  </div>
+                </div>
+              </div>
+              <!-- end of .container-->
+
+            </section>
+            <!-- <section> close ============================-->
+            <!-- ============================================-->
+
+
+            <footer class="page-footer">
+              <div class="bg-holder" style="background-image:url(assets/img/navigation/jar.jpg);background-position: 0 27%; transform: scale(1.1);">
+              </div>
+              <!--/.bg-holder-->
+
+              <div class="row justify-content-center">
+                <div class="col-lg-10">
+                  <div class="row align-items-center">
+                    <div class="col-lg-6 text-lg-left">
+                      <p class="fs--1 text-uppercase ls font-weight-bold mb-0">
+                        Contact Us - budtender@budz.finance </p>
+                    </div>
+                    <div class="col-lg-6 text-lg-right mt-2 mt-lg-0">
+                      <p class="fs--1 text-uppercase ls font-weight-bold mb-0">Made with<span class="fa fa-cannabis mx-1"></span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </footer>
+          </div>
+          <div class="col-lg-3 col-12 t-0 order-0 order-lg-1 position-absolute position-lg-relative">
+            <div class="h-lg-100vh sticky-top py-4 sticky-area"><span class="btn-close"><img class="d-none d-lg-block times" src="assets/img/times.svg" width="25" alt=""/><img class="d-lg-none" src="assets/img/times-black.svg" width="18" alt=""/></span>
+              <div class="bg-holder" style="background-image:url(assets/img/navigation/jar.jpg);">
+              </div>
+              <!--/.bg-holder-->
+
+              <h1 class="page-title">About</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="page position-absolute t-0 w-100" id="service">
+        <div class="row no-gutters minh-100vh">
+          <div class="col-lg-9 order-1 order-lg-0 page-content pt-6 pt-lg-0">
+
+
+            <!-- ============================================-->
+            <!-- <section> begin ============================-->
+            <section class="pt-5 pt-xl-7 pt-xxl-8">
+
+              <div class="container-fluid">
+                <div class="row justify-content-center">
+                  <div class="col-lg-10">
+                    <div class="text-center mb-5 mb-lg-6">
+                      <h2 class="fs-2 fs-sm-3"> <span class="font-weight-medium">The </span> Seedvault <img src="assets/img/budz-icon.png" style="width:40px; transform: translate(0px,-5px);"/></h2>
+                      <hr class="hr-ornate col-8 col-md-9 col-xl-8 col-xxl-6">
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4 mb-4 mb-xl-0">
+                        <div style="width:100%; text-align: center;">
+                        <i style="color:rgba(56,240,148,255);" class="fa fa-4x fa-lock"></i><br/>
+                        <h5 class="text-uppercase">Staking</h5>
+                        <span class="pr-xxl-5">Staking BUDZ earns interest at <b>42.0% APY</b> and up to 84.0% APY with <b>50% of staked amount burnt</b>.</span>
+                        </div>
+                      </div>
+                      <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4 mb-4 mb-xl-0">
+                        <div style="width:100%; text-align: center;">
+                          <i style="color:rgba(56,240,148,255);" class="fa fa-4x fa-burn"></i><br/>
+                          <h5 class="text-uppercase">Burning</h5>
+                          <span class="pr-xxl-5">Burn BUDZ to <b>pump the price</b> relative to amount burnt, <b>increase everyones</b> farming $ value APY, alongside <b>increasing your individual</b> BUDZ staking APY. </span>
+                        </div>
+                      </div>
+                      <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4 mb-4 mb-xl-0">
+                        <div style="width:100%; text-align: center;">
+                          <i style="color:rgba(56,240,148,255);" class="fa fa-4x fa-space-shuttle"></i><br/>
+                          <h5 class="text-uppercase">NFT</h5>
+                          <span class="pr-xxl-5">Ensure eligiblity to our <b>unique NFTs</b> by burning and staking the appropriate amount of BUDZ.</span>
+                        </div>
+                      </div>
+                    </div>
+                    <br/><br/>
+                    <hr class="hr-ornate col-8 col-md-9 col-xl-8 col-xxl-6">
+                    <br/>
+                    <div style="padding:10px; margin-bottom:-50px;" class="row justify-content-center">
+                          <h4 style="width:100%"><img src="assets/img/budz-icon.png" style="width:25px; transform: translate(0px,-3px);"/> BUDZ Burning&nbsp;<i class="fa fa-burn"></i></h4><br/><br/>
+                        <p style="width:100%; text-align: left;"><i class="fa fa-burn"></i>&nbsp;Burning BUDZ increases your individual staking APY up to a <b>maximum of 2x.</b><br/><i class="fa fa-chart-line"></i>&nbsp;Burning BUDZ <b>simultaneously pumps the price</b> by burning an equivalant amount of BUDZ from the BNB/BUDZ pair of Pancakeswap.</p>
+                      <div style="max-height: 450px; border:solid lightgrey 5px; padding:15px; margin-bottom:30px;" class="col-12 col-md-6">
+                        <p>Burn <b>50%</b> of your staked balance for <b>2x</b> staking bonus.</p>
+                        <p>Burn up to 3x of your total staking interest claimed to <b>pump the price!</b></p>
+                        <form class="zform">
+                          <div class="form-group text-left">
+                            <i class="fa fa-wallet"></i> Wallet: <span id="userAddress">N/A</span><br/>
+                            <img src="assets/img/budz-icon.png" style="width:15px; transform: translate(0px,-2px);"/> Balance: <span id="budzBalanceBurning">0</span><br/>
+                            <img src="assets/img/budz-icon.png" style="width:15px; transform: translate(0px,-2px);"/> Staked: <span id="budzStaked">0</span><br/>
+                            <img src="assets/img/budz-icon.png" style="width:15px; transform: translate(0px,-2px);"/> <b>Burnt: <span id="budzBurnt">0</span></b>
+                            <br/>
+                            <label class="ls text-uppercase mb-0">Burn BUDZ to acquire a maximum of 2x staking APY @ 84.0%</label>
+                            <input class="form-control" type="number"  step="any" placeholder="Burn Amount" id="burnAmount"/>
+                            <label class="ls text-uppercase mb-0">Available to burn : <span id="availableToBurn"></span></label>
+                            <a style="color:white;" class="btn btn-block btn-success mt-4" onclick="BurnTokens()">Burn BUDZ&nbsp;<i class="fa fa-burn"></i></a>
+                            <br/>
+                          </div>
+                        </form>
+                      </div>
+                      <div style="text-align: center;" class="col-12 col-md-6">
+                        <img src="assets/img/jointAni.svg" style="max-width:100%; width:100%; transform: translate(0px,-25px);" alt="">
+                      </div>
+                    </div>
+                    <hr class="hr-ornate col-8 col-md-9 col-xl-8 col-xxl-6">
+                    <div style="padding:10px;" class="row justify-content-center">
+                        <h4 style="text-align:right; width:100%"><img src="assets/img/budz-icon.png" style="width:25px; transform: translate(0px,-3px);"/> BUDZ Staking&nbsp;<i class="fa fa-lock"></i></h4><br/><br/>
+                        <p style="width:100%; text-align: right;"><i class="fa fa-coins"></i>&nbsp;Stake BUDZ to increase your position and <b>earn BUDZ passively</b><br/><b><i class="fa fa-seedling"></i>&nbsp;7 day min stake period</b>, your most recent plantation resets the period.</p>
+                        <div class="col-12 col-md-6">
+                          <img src="assets/img/plantGrow.png" style="width:100%; max-width: 100%; transform: translate(0px,0px);" alt="">
+                          <!--<ul>
+                            <li>
+                              <span>Your Earned Interest:</span>
+                            </li>
+                            <li>
+                              <span>Your Referral Bonuses:</span>
+                            </li>
+                            <li>
+                              <span>Total BUDZ Supply:</span><br/>
+                            </li>
+                            <li>
+                              <span>Total BUDZ Staked:</span>
+                            </li>
+                          </ul>-->
+
+
+
+                        </div>
+                      <div style="border:solid lightgrey 5px; padding:15px; margin-bottom:30px" class="col-12 col-md-6">
+                        <span>Your current APY @ <span id="budzStakingAPY"></span></span><br>
+                        <span>Time till uproot: <span id="budzStakingDaysLeft">N/A</span></span><br/><br/>
+                        <form class="zform">
+                          <div class="form-group text-left">
+                            <i class="fa fa-wallet"></i> Wallet: <span id="userAddress1">N/A</span><br/>
+                            <img src="assets/img/budz-icon.png" style="width:15px; transform: translate(0px,-2px);"/> Balance: <span id="budzBalanceStaking">0</span><br/>
+                            <img src="assets/img/budz-icon.png" style="width:15px; transform: translate(0px,-2px);"/> <b>Staked: <span id="budzStaked2">0</span></b>
+                            <br/>
+                            <label class="ls text-uppercase mb-0">Plant BUDZ to earn a minimum 42.0% APY</label>
+                            <input class="form-control" type="number" step="any" placeholder="Stake Amount" id="stakeAmount" />
+                            <label class="ls text-uppercase mb-0"><i class="fa fa-info-circle"></i>&nbsp;Planting / Uprooting BUDZ claims any accrued interest</label>
+                            <a style="color:white;" class="btn btn-block btn-success mt-4" onclick="StakeTokens()">Plant BUDZ&nbsp;<i class="fa fa-seedling"></i></a>
+                            <a style="color:white;" class="btn btn-block btn-warning mt-4" onclick="UnstakeTokens()">Uproot BUDZ&nbsp;<i class="fa fa-tree"></i></a>
+                          </div>
+                          <div class="form-group text-left">
+                            <label class="ls text-uppercase mb-0">Claimable Interest</label>
+                            <span class="form-control" id="budzStakingRewards">0 BUDZ</span>
+                          </div>
+                          <a style="color:white;" class="btn btn-block btn-success mt-4" onclick="RollInterest()">Roll BUDZ&nbsp;<i class="fa fa-joint"></i></a>
+                          <a style="color:white;" class="btn btn-block btn-primary mt-4" onclick="ClaimInterest()">Crop BUDZ&nbsp;<i class="fa fa-cannabis"></i></a>
+                        </form>
+                      </div>
+                    </div>
+                    <hr class="hr-ornate col-8 col-md-9 col-xl-8 col-xxl-6">
+                  </div>
+                </div>
+              </div>
+              <!-- end of .container-->
+
+            </section>
+            <!-- <section> close ============================-->
+            <!-- ============================================-->
+
+
+            <footer class="page-footer">
+              <div class="bg-holder" style="background-image:url(assets/img/navigation/airdrop.jpg);background-position: 0 41%; transform: scale(1.1);">
+              </div>
+              <!--/.bg-holder-->
+
+              <div class="row justify-content-center">
+                <div class="col-lg-10">
+                  <div class="row align-items-center">
+                    <div class="col-lg-6 text-lg-left">
+                      <p class="fs--1 text-uppercase ls font-weight-bold mb-0">
+                        Contact Us - budtender@budz.finance </p>
+                    </div>
+                    <div class="col-lg-6 text-lg-right mt-2 mt-lg-0">
+                      <p class="fs--1 text-uppercase ls font-weight-bold mb-0">Made with<span class="fa fa-cannabis mx-1"></span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </footer>
+          </div>
+          <div class="col-lg-3 col-12 t-0 order-0 order-lg-1 position-absolute position-lg-relative">
+            <div class="h-lg-100vh sticky-top py-4 sticky-area"><span class="btn-close"><img class="d-none d-lg-block times" src="assets/img/times.svg" width="25" alt=""/><img class="d-lg-none" src="assets/img/times-black.svg" width="18" alt=""/></span>
+              <div class="bg-holder" style="background-image:url(assets/img/navigation/airdrop.jpg);">
+              </div>
+              <!--/.bg-holder-->
+
+              <h1 class="page-title">Seedvault</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="page position-absolute t-0 w-100" id="portfolio">
+        <div class="row no-gutters minh-100vh">
+          <div class="col-lg-9 order-1 order-lg-0 page-content pt-6 pt-lg-0">
+
+
+            <!-- ============================================-->
+            <!-- <section> begin ============================-->
+            <section class="text-center pt-5 pt-xl-7 pt-xxl-8 text-center" id="boots4-projects">
+              <div class="container-fluid">
+                <div class="row justify-content-center">
+                  <div class="col-lg-10">
+                    <div class="text-center mb-5 mb-lg-6">
+                      <h2 class="fs-2 fs-sm-3"> <span class="font-weight-medium">The </span> Growroom <img src="assets/img/budz-icon.png" style="width:40px; transform: translate(0px,-5px);"/></h2>
+                      <hr class="hr-ornate col-8 col-md-9 col-xl-8 col-xxl-6">
+                    </div>
+                    <div class="row">
+                      <div class="col-12 col-md-12 mb-4 mb-xl-0">
+                        <h4>High yield farming on BSC with <img src="assets/img/budz-icon.png" style="width:25px; transform: translate(0px,-3px);"/>BUDZ</h4>
+                        <p class="mt-3 mb-0"><i class="fa fa-seedling"></i>&nbsp;Plant your seeds, watch them grow and enjoy your yield while harvesting the dopest APY in this budding industry&nbsp;<i class="fa fa-cannabis"></i></p>
+                        <a style="color:white; width:65%; margin-left:17.5%;" class="btn btn-block btn-primary mt-4" onclick="NewHalvening()" id="halveningButton"></a>
+                        <span><i class="fa fa-info-circle"></i>&nbsp; Ensure to harvest any unclaimed rewards prior to halvening.</span><br/><br/>
+
+                        <i class="fa fa-wallet"></i> Connected Wallet: <span id="userAddress2">N/A</span><br/>
+                      </div>
+                      <div class="col-md-6 mb-4 mb-lg-0">
+                        <div style="border:solid lightgrey 5px; padding:15px; margin-bottom:30px">
+                        <h4>BUDZ/BNB LP Farm</h4>
+                        <p><b>APY @ <span id="budzBnbApy"></span></b><br/>
+                          <b id="budzBnbDollarPerYear"></b>
+                        </p>
+                        <form class="zform">
+                          <div class="form-group text-left">
+                            Wallet Balance: <span id="budzBnbBalance">0</span><br/>
+                            Staked Balance: <span id="activeDepositBudzBnb"></span> <span id="activeDepositValueBudzBnb"></span>
+
+                            <br/>
+                            <label class="ls text-uppercase mb-0">Deposit BUDZ/BNB LP</label>
+                            <input class="form-control" type="number" step="any" placeholder="Stake Amount" id="lpStakeAmount1"/>
+                            <a style="color:white;" class="btn btn-block btn-success mt-4" onclick="LockLp(0, 'lpStakeAmount1')">Stake LP</a>
+                            <a style="color:white;" class="btn btn-block btn-warning mt-4" onclick="UnlockLp(0)">Unstake LP</a>
+                            <label class="ls text-uppercase mb-0"><i class="fa fa-info-circle"></i>&nbsp;Staking / Unstaking LP harvests any accrued rewards</label>
+                            <div class="row">
+                              <div class="col-6">
+                                <a style="color:white;" class="btn btn-block btn-primary mt-4" onclick="ApproveLp(0)">Approve LP</a>
+                              </div>
+                              <div class="col-6">
+                                <a style="color:white;" class="btn btn-block btn-primary mt-4">Acquire LP</a>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group text-left">
+                            <label class="ls text-uppercase mb-0">Harvestable Rewards</label>
+                            <label class="ls text-uppercase mb-0" id="harvestValueBudzBnb">$0</label>
+                            <span class="form-control" id="harvestBudzBnb">0</span>
+                          </div>
+                          <a style="color:white;" class="btn btn-block btn-success mt-4" onclick="Harvest(0)">Harvest BUDZ&nbsp;<i class="fa fa-cannabis"></i></a>
+                        </form>
+                      </div>
+                      </div>
+                      <div class="col-md-6 mb-4 mb-lg-0">
+                        <div style="border:solid lightgrey 5px; padding:15px; margin-bottom:30px">
+                        <h4>ETH/BNB LP Farm</h4>
+                        <p><b>APY @ <span id="ethBnbApy"></span></b><br/>
+                          <b id="ethBnbDollarPerYear"></b>
+                        </p>
+                        <form class="zform">
+                          <div class="form-group text-left">
+                            Wallet Balance: <span id="ethBnbBalance">0</span><br/>
+                            Staked Balance: <span id="activeDepositEthBnb">0</span> <span id="activeDepositValueEthBnb"></span>
+
+                            <br/>
+                            <label class="ls text-uppercase mb-0">Deposit ETH/BNB LP</label>
+                            <input class="form-control" type="number" step="any" placeholder="Stake Amount" id="lpStakeAmount2"/>
+                            <a style="color:white;" class="btn btn-block btn-success mt-4" onclick="LockLp(1, 'lpStakeAmount2')">Stake LP</a>
+                            <a style="color:white;" class="btn btn-block btn-warning mt-4" onclick="UnlockLp(1)">Unstake LP</a>
+                            <label class="ls text-uppercase mb-0"><i class="fa fa-info-circle"></i>&nbsp;Staking / Unstaking LP harvests any accrued rewards</label>
+                            <div class="row">
+                              <div class="col-6">
+                                <a style="color:white;" class="btn btn-block btn-primary mt-4" onclick="ApproveLp(1)">Approve LP</a>
+                              </div>
+                              <div class="col-6">
+                                <a style="color:white;" class="btn btn-block btn-primary mt-4">Acquire LP</a>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group text-left">
+                            <label class="ls text-uppercase mb-0">Harvestable Rewards</label>
+                            <label class="ls text-uppercase mb-0" id="harvestValueEthBnb">$0</label>
+                            <span class="form-control" id="harvestEthBnb">0</span>
+                          </div>
+                          <a style="color:white;" class="btn btn-block btn-success mt-4" onclick="Harvest(1)">Harvest BUDZ&nbsp;<i class="fa fa-cannabis"></i></a>
+                        </form>
+                      </div>
+                      </div>
+                      <div class="col-md-6 mb-4 mb-lg-0">
+                        <div style="border:solid lightgrey 5px; padding:15px; margin-bottom:30px">
+                        <h4>YFI/BNB LP Farm</h4>
+                        <p><b>APY @ <span id="yfiBnbApy"></span></b><br/>
+                          <b id="yfiBnbDollarPerYear"></b>
+                        </p>
+                        <form class="zform">
+                          <div class="form-group text-left">
+                            Wallet Balance: <span id="yfiBnbBalance">0</span><br/>
+                            Staked Balance: <span id="activeDepositYfiBnb">0</span> <span id="activeDepositValueYfiBnb"></span>
+
+                            <br/>
+                            <label class="ls text-uppercase mb-0">Deposit YFI/BNB LP</label>
+                            <input class="form-control" type="number" step="any" placeholder="Stake Amount" id="lpStakeAmount3"/>
+                            <a style="color:white;" class="btn btn-block btn-success mt-4" onclick="LockLp(2, 'lpStakeAmount3')">Stake LP</a>
+                            <a style="color:white;" class="btn btn-block btn-warning mt-4" onclick="UnlockLp(2)">Unstake LP</a>
+                            <label class="ls text-uppercase mb-0"><i class="fa fa-info-circle"></i>&nbsp;Staking / Unstaking LP harvests any accrued rewards</label>
+                            <div class="row">
+                              <div class="col-6">
+                                <a style="color:white;" class="btn btn-block btn-primary mt-4" onclick="ApproveLp(2)">Approve LP</a>
+                              </div>
+                              <div class="col-6">
+                                <a style="color:white;" class="btn btn-block btn-primary mt-4">Acquire LP</a>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group text-left">
+                            <label class="ls text-uppercase mb-0">Harvestable Rewards</label>
+                            <label class="ls text-uppercase mb-0" id="harvestValueYfiBnb">$0</label>
+                            <span class="form-control" id="harvestYfiBnb">0</span>
+                          </div>
+                          <a style="color:white;" class="btn btn-block btn-success mt-4" onclick="Harvest(2)">Harvest BUDZ&nbsp;<i class="fa fa-cannabis"></i></a>
+                        </form>
+                      </div>
+                      </div>
+                      <div class="col-md-6 mb-4 mb-lg-0">
+                        <div style="border:solid lightgrey 5px; padding:15px; margin-bottom:30px">
+                        <h4>CAKE/BNB LP Farm</h4>
+                        <p><b>APY @ <span id="cakeBnbApy"></span></b><br/>
+                          <b id="cakeBnbDollarPerYear"></b>
+                        </p>
+                        <form class="zform">
+                          <div class="form-group text-left">
+                            Wallet Balance: <span id="cakeBnbBalance">0</span><br/>
+                            Staked Balance: <span id="activeDepositCakeBnb">0</span> <span id="activeDepositValueCakeBnb"></span>
+
+                            <br/>
+                            <label class="ls text-uppercase mb-0">Deposit CAKE/BNB LP</label>
+                            <input class="form-control" type="number" step="any" placeholder="Stake Amount" id="lpStakeAmount4"/>
+                            <a style="color:white;" class="btn btn-block btn-success mt-4" onclick="LockLp(3, 'lpStakeAmount4')">Stake LP</a>
+                            <a style="color:white;" class="btn btn-block btn-warning mt-4" onclick="UnlockLp(3)">Unstake LP</a>
+                            <label class="ls text-uppercase mb-0"><i class="fa fa-info-circle"></i>&nbsp;Staking / Unstaking LP harvests any accrued rewards</label>
+                            <div class="row">
+                              <div class="col-6">
+                                <a style="color:white;" class="btn btn-block btn-primary mt-4" onclick="ApproveLp(3)">Approve LP</a>
+                              </div>
+                              <div class="col-6">
+                                <a style="color:white;" class="btn btn-block btn-primary mt-4">Acquire LP</a>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group text-left">
+                            <label class="ls text-uppercase mb-0">Harvestable Rewards</label>
+                            <label class="ls text-uppercase mb-0" id="harvestValueCakeBnb">$0</label>
+                            <span class="form-control" id="harvestCakeBnb">0</span>
+                          </div>
+                          <a style="color:white;" class="btn btn-block btn-success mt-4" onclick="Harvest(3)">Harvest BUDZ&nbsp;<i class="fa fa-cannabis"></i></a>
+                        </form>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- end of .container-->
+
+            </section>
+            <!-- <section> close ============================-->
+            <!-- ============================================-->
+
+
+            <footer class="page-footer">
+              <div class="bg-holder" style="background-image:url(assets/img/navigation/weedfarm.jpg);background-position: 0 27%; transform: scale(1.1);">
+              </div>
+              <!--/.bg-holder-->
+
+              <div class="row justify-content-center">
+                <div class="col-lg-10">
+                  <div class="row align-items-center">
+                    <div class="col-lg-6 text-lg-left">
+                      <p class="fs--1 text-uppercase ls font-weight-bold mb-0">
+                        Contact Us - budtender@budz.finance </p>
+                    </div>
+                    <div class="col-lg-6 text-lg-right mt-2 mt-lg-0">
+                      <p class="fs--1 text-uppercase ls font-weight-bold mb-0">Made with<span class="fa fa-cannabis mx-1"></span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </footer>
+          </div>
+          <div class="col-lg-3 col-12 t-0 order-0 order-lg-1 position-absolute position-lg-relative">
+            <div class="h-lg-100vh sticky-top py-4 sticky-area"><span class="btn-close"><img class="d-none d-lg-block times" src="assets/img/times.svg" width="25" alt=""/><img class="d-lg-none" src="assets/img/times-black.svg" width="18" alt=""/></span>
+              <div class="bg-holder" style="background-image:url(assets/img/navigation/weedfarm.jpg);">
+              </div>
+              <!--/.bg-holder-->
+
+              <h1 class="page-title">Growroom</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="page position-absolute t-0 w-100" id="contact">
+        <div class="row no-gutters minh-100vh">
+          <div class="col-lg-9 order-1 order-lg-0 page-content pt-6 pt-lg-0">
+
+
+            <!-- ============================================-->
+            <!-- <section> begin ============================-->
+
+
+              <div style="overflow: hidden; height:100%; width:100%; text-align: center; margin:0; padding:0;"><br/><br/><br/><br/>
+                <h2 class="fs-2 fs-sm-3"> <span class="font-weight-medium">Your </span> BUDZtender <img src="assets/img/budz-icon.png" style="width:40px; transform: translate(0px,-5px);"/></h2>
+                <hr class="hr-ornate col-8 col-md-9 col-xl-8 col-xxl-6" />
+                  <a href="https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x1e0A4D330b60BaBf3386125aeD73b81C6afC8526" target="_blank"><img class="pancakeImg" src="assets/img/pancake.png"/></a>
+                <!--<iframe scrolling="no" width="100%" height="100%" style="width:100%; height:100%" src="https://app.uniswap.org"></iframe>-->
+             </div>
+
+              <!-- end of .container-->
+
+
+            <!-- <section> close ============================-->
+            <!-- ============================================-->
+
+
+            <footer class="page-footer">
+              <div class="bg-holder" style="background-image:url(assets/img/navigation/budtender.webp);background-position: 0 37%; transform: scale(1.1);">
+              </div>
+              <!--/.bg-holder-->
+
+              <div class="row justify-content-center">
+                <div class="col-lg-10">
+                  <div class="row align-items-center">
+                    <div class="col-lg-6 text-lg-left">
+                      <p class="fs--1 text-uppercase ls font-weight-bold mb-0">
+                        Contact Us - budtender@budz.finance </p>
+                    </div>
+                    <div class="col-lg-6 text-lg-right mt-2 mt-lg-0">
+                      <p class="fs--1 text-uppercase ls font-weight-bold mb-0">Made with<span class="fa fa-cannabis mx-1"></span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </footer>
+          </div>
+          <div class="col-lg-3 col-12 t-0 order-0 order-lg-1 position-absolute position-lg-relative">
+            <div class="h-lg-100vh sticky-top py-4 sticky-area"><span class="btn-close"><img class="d-none d-lg-block times" src="assets/img/times.svg" width="25" alt=""/><img class="d-lg-none" src="assets/img/times-black.svg" width="18" alt=""/></span>
+              <div class="bg-holder" style="background-image:url(assets/img/navigation/budtender.webp);">
+              </div>
+              <!--/.bg-holder-->
+
+              <h1 class="page-title">Budtender</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+    <!-- ===============================================-->
+    <!--    End of Main Content-->
+    <!-- ===============================================-->
+
+    <!-- ===============================================-->
+    <!--    JavaScripts-->
+    <!-- ===============================================-->
+    <script src="https://widgets.coingecko.com/coingecko-coin-price-marquee-widget.js"></script>
+    <!--<script
+    src="https://code.jquery.com/jquery-3.5.1.min.js"
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+    crossorigin="anonymous"></script>-->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.js"></script>
+    <script src="assets/js/plugins.js"></script>
+    <script src="assets/lib/prismjs/prism.js"></script>
+    <script src="assets/lib/loaders.css/loaders.css.js"></script>
+    <script src="assets/js/stickyfill.min.js"></script>
+    <script src="assets/lib/remodal/remodal.js"></script>
+    <script src="assets/lib/jtap/jquery.tap.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script src="assets/lib/owl.carousel/owl.carousel.js"></script>
+    <script src="assets/lib/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/lib/isotope-packery/packery-mode.pkgd.min.js"></script>
+    <script src="assets/lib/lightbox2/js/lightbox.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="js/web3.min.js"></script>
+    <script src="js/web3Connect.js?ver=1.1.2"></script>
+    <script src="js/main.js?ver=1.1.2"></script>
+  </body>
+
+</html>
