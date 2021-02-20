@@ -7,7 +7,7 @@ const decimals = 18;
 var budzContract;
 var budzLpContract;
 const budzContractAddress = "0x1e0A4D330b60BaBf3386125aeD73b81C6afC8526";
-var cakeBudzBnb = '';
+var cakeBudzBnb = '0xE4189167e919C3a07be1daB1826b4799A3c92Ef7';
 var cakeEthBnb = '0x70D8929d04b60Af4fb9B58713eBcf18765aDE422';
 var cakeYfiBnb = '0x68Ff2ca47D27db5Ac0b5c46587645835dD51D3C1';
 var cakeCakeBnb = '0xA527a61703D82139F8a06Bc30097cC9CAA2df5A6';
