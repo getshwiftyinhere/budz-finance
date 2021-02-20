@@ -1226,7 +1226,7 @@ function CheckAccount() {
 				//Populate();
 				GetPriceData();
 				GetAPYData();
-			}, 1000);
+			}, 2000);
 			clearInterval(accountInterval);
 			//interval for account change
 			accountInterval = setInterval(function () {
