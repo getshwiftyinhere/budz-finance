@@ -79,8 +79,8 @@ setInterval(function(){
             var availableToBurn = (totalStakingInterest * burnAdjust) - burnt;
             var balance = web3.utils.fromWei(await budzContract.methods.balanceOf(activeAccount).call());
             document.getElementById("availableToBurn").innerHTML = toFixedMax((availableToBurn),18);  + " BUDZ";
-            document.getElementById("budzBalanceBurningValue").innerHTML = "$" + toFixedMax(balance,2);
-            document.getElementById("budzBalanceStakingValue").innerHTML = "$" + toFixedMax(balance,2);
+            document.getElementById("budzBalanceBurningValue").innerHTML = "$" + toFixedMax(balance * budzUsd,2);
+            document.getElementById("budzBalanceStakingValue").innerHTML = "$" + toFixedMax(balance * budzUsd,2);
             document.getElementById("budzStakedValue").innerHTML = "$" + toFixedMax(staked * budzUsd,2);
             document.getElementById("budzStaked2Value").innerHTML = "$" + toFixedMax(staked * budzUsd,2);
             document.getElementById("budzStakingRewardsValue").innerHTML = "$" + toFixedMax(claimable * budzUsd,2);
