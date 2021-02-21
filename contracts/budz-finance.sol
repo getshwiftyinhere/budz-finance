@@ -338,7 +338,7 @@ contract BUDZFINANCE is IERC20, TokenEvents {
     uint constant internal MINUTESECONDS = 60;
     uint constant internal DAYSECONDS = 86400;
     uint constant internal MINSTAKEDAYLENGTH = 7;
-    uint256 totalStaked;
+    uint256 public totalStaked;
     address[] public lpAddresses;
     mapping (address => uint) public totalLpFrozen;
     mapping (address => uint[]) public lpFrozenBalances;

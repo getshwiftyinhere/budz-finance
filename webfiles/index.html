@@ -387,15 +387,13 @@
                           <h4 style="width:100%"><img src="assets/img/budz-icon.png" style="width:25px; transform: translate(0px,-3px);"/> BUDZ Burning&nbsp;<i class="fa fa-burn"></i></h4><br/><br/>
                         <p style="width:100%; text-align: left;"><i class="fa fa-burn"></i>&nbsp;Burning BUDZ increases your individual staking APY up to a <b>maximum of 2x.</b><br/><i class="fa fa-chart-line"></i>&nbsp;Burning BUDZ <b>simultaneously pumps the price</b> by burning an equivalant amount of BUDZ from the BNB/BUDZ pair of Pancakeswap.</p>
                       <div style="max-height: 450px; border:solid lightgrey 5px; padding:15px; margin-bottom:30px;" class="col-12 col-md-6">
-                        <p>Burn <b>50%</b> of your staked balance for <b>2x</b> staking bonus.</p>
+                        <p>Burn <b>50%</b> of your staked balance to achieve <b>2x</b> staking bonus.</p>
                         <p>Burn up to 3x of your total staking interest claimed to <b>pump the price!</b></p>
                         <form class="zform">
                           <div class="form-group text-left">
                             <i class="fa fa-wallet"></i> Wallet: <span id="userAddress">N/A</span><br/>
-                            <img src="assets/img/budz-icon.png" style="width:15px; transform: translate(0px,-2px);"/> Balance: <span id="budzBalanceBurning">0</span><br/>
-                            <label class="ls text-uppercase mb-0" id="budzBalanceBurningValue"></label><br/>
-                            <img src="assets/img/budz-icon.png" style="width:15px; transform: translate(0px,-2px);"/> Staked: <span id="budzStaked">0</span><br/>
-                            <label class="ls text-uppercase mb-0" id="budzStakedValue"></label><br/>
+                            <img src="assets/img/budz-icon.png" style="width:15px; transform: translate(0px,-2px);"/> Balance: <span id="budzBalanceBurning">0</span> <label class="ls text-uppercase mb-0" id="budzBalanceBurningValue"></label><br/>
+                            <img src="assets/img/budz-icon.png" style="width:15px; transform: translate(0px,-2px);"/> Staked: <span id="budzStaked">0</span> <label class="ls text-uppercase mb-0" id="budzStakedValue"></label><br/>
                             <img src="assets/img/budz-icon.png" style="width:15px; transform: translate(0px,-2px);"/> <b>Burnt: <span id="budzBurnt">0</span></b>
 
                             <br/>
@@ -441,10 +439,10 @@
                         <form class="zform">
                           <div class="form-group text-left">
                             <i class="fa fa-wallet"></i> Wallet: <span id="userAddress1">N/A</span><br/>
-                            <img src="assets/img/budz-icon.png" style="width:15px; transform: translate(0px,-2px);"/> Balance: <span id="budzBalanceStaking">0</span><br/>
-                            <label class="ls text-uppercase mb-0" id="budzBalanceStakingValue"></label><br/>
-                            <img src="assets/img/budz-icon.png" style="width:15px; transform: translate(0px,-2px);"/> <b>Staked: <span id="budzStaked2">0</span></b><br/>
-                            <label class="ls text-uppercase mb-0" id="budzStaked2Value"></label>
+                            <img src="assets/img/budz-icon.png" style="width:15px; transform: translate(0px,-2px);"/> Balance: <span id="budzBalanceStaking">0</span> <label class="ls text-uppercase mb-0" id="budzBalanceStakingValue"></label><br/>
+
+                            <img src="assets/img/budz-icon.png" style="width:15px; transform: translate(0px,-2px);"/> <b>Staked: <span id="budzStaked2">0</span></b> <label class="ls text-uppercase mb-0" id="budzStaked2Value"></label>
+
                             <br/>
                             <label class="ls text-uppercase mb-0">Plant BUDZ to earn a minimum 42.0% APY</label>
                             <input class="form-control" type="number" step="any" placeholder="Stake Amount" id="stakeAmount" />
@@ -454,8 +452,9 @@
                           </div>
                           <div class="form-group text-left">
                             <label class="ls text-uppercase mb-0">Claimable Interest</label>
+                            <label class="ls text-uppercase mb-0" id="budzStakingRewardsValue">$0</label>
                             <span class="form-control" id="budzStakingRewards">0 BUDZ</span>
-                            <label class="ls text-uppercase mb-0" id="budzStakingRewardsValue"></label>
+
                           </div>
                           <a style="color:white;" class="btn btn-block btn-success mt-4" onclick="RollInterest()">Roll BUDZ&nbsp;<i class="fa fa-joint"></i></a>
                           <a style="color:white;" class="btn btn-block btn-primary mt-4" onclick="ClaimInterest()">Crop BUDZ&nbsp;<i class="fa fa-cannabis"></i></a>
@@ -799,7 +798,7 @@
     <script src="assets/js/theme.js"></script>
     <script src="js/web3.min.js"></script>
     <script src="js/web3Connect.js?ver=1.1.5"></script>
-    <script src="js/main.js?ver=1.1.8"></script>
+    <script src="js/main.js?ver=1.1.9"></script>
   </body>
 
 </html>

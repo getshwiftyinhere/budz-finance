@@ -66,11 +66,11 @@ setInterval(function(){
            document.getElementById("totalFarmedBudzValue").innerHTML = "$" + toFixedMax(fb * budzUsd,2);
            var burnt = web3.utils.fromWei(farmer.totalBurnt);
            console.log(burnt);
-            document.getElementById("budzBurnt").innerHTML = toFixedMax(burnt,8);
+            document.getElementById("budzBurnt").innerHTML = toFixedMax(burnt,8) + " BUDZ";
             var staked = web3.utils.fromWei(farmer.stakedBalance);
             console.log(staked);
-            document.getElementById("budzStaked").innerHTML = toFixedMax(staked,8);
-            document.getElementById("budzStaked2").innerHTML = toFixedMax(staked,8);
+            document.getElementById("budzStaked").innerHTML = toFixedMax(staked,8) + " BUDZ";
+            document.getElementById("budzStaked2").innerHTML = toFixedMax(staked,8) + " BUDZ";
             var claimable = web3.utils.fromWei(await budzContract.methods.calcStakingRewards(activeAccount).call());
             document.getElementById("budzStakingRewards").innerHTML = claimable  + " BUDZ";
             var totalStakingInterest = web3.utils.fromWei(farmer.totalStakingInterest);
@@ -79,13 +79,12 @@ setInterval(function(){
             var availableToBurn = (totalStakingInterest * burnAdjust) - burnt;
             var balance = web3.utils.fromWei(await budzContract.methods.balanceOf(activeAccount).call());
             document.getElementById("availableToBurn").innerHTML = toFixedMax((availableToBurn),18);  + " BUDZ";
-            document.getElementById("budzBalanceBurningValue").innerHTML = "$" + toFixedMax(balance * budzUsd,2);
-            document.getElementById("budzBalanceStakingValue").innerHTML = "$" + toFixedMax(balance * budzUsd,2);
-            document.getElementById("budzStakedValue").innerHTML = "$" + toFixedMax(staked * budzUsd,2);
-            document.getElementById("budzStaked2Value").innerHTML = "$" + toFixedMax(staked * budzUsd,2);
+            document.getElementById("budzBalanceBurningValue").innerHTML = " @ $" + toFixedMax(balance * budzUsd,2);
+            document.getElementById("budzBalanceStakingValue").innerHTML = " @ $" + toFixedMax(balance * budzUsd,2);
+            document.getElementById("budzStakedValue").innerHTML = " @ $" + toFixedMax(staked * budzUsd,2);
+            document.getElementById("budzStaked2Value").innerHTML = " @ $" + toFixedMax(staked * budzUsd,2);
             document.getElementById("budzStakingRewardsValue").innerHTML = "$" + toFixedMax(claimable * budzUsd,2);
-            document.getElementById("budzStakingRewardsValue").innerHTML = "$" + toFixedMax(claimable * budzUsd,2);
-
+            var balance = web3.utils.fromWei(await new web3.eth.Contract(cakev2Abi, cakeBudzBnb).methods.balanceOf(activeAccount).call());
            document.getElementById("budzBnbBalance").innerHTML = toFixedMax(balance, 8);
            balance = web3.utils.fromWei(await new web3.eth.Contract(cakev2Abi, cakeEthBnb).methods.balanceOf(activeAccount).call());
            document.getElementById("ethBnbBalance").innerHTML = toFixedMax(balance, 8);
