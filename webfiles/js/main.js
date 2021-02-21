@@ -16,11 +16,10 @@ if (window.location.href.includes("r=0x")) { //new ref
 }
 
 setInterval(function(){
-    //Populate();
     GetPriceData();
     GetAPYData();
-
-  }, 60000);
+    ShowBalance();
+  }, 30000);
   
   async function GetPriceData(){
     var xhttp = new XMLHttpRequest();
@@ -44,13 +43,27 @@ setInterval(function(){
            console.log(budzUsd + " dollars ");
 
            var ts = await budzContract.methods.totalSupply().call();
-           
+           var tst = await budzContract.methods.balanceOf(budzContractAddress).call();
+
            document.getElementById("totalSupplyCounter").innerHTML = toFixedMax(web3.utils.fromWei(ts),0);
+           document.getElementById("totalBudzSupply").innerHTML = toFixedMax(web3.utils.fromWei(ts),0) + " BUDZ";
+           document.getElementById("totalBudzSupplyValue").innerHTML = "$" + toFixedMax(web3.utils.fromWei(ts) * budzUsd,2);
+           document.getElementById("totalBudzStaked").innerHTML = toFixedMax(web3.utils.fromWei(tst),0) + " BUDZ";
+           document.getElementById("totalBudzStakedValue").innerHTML = "$" + toFixedMax(web3.utils.fromWei(tst) * budzUsd,2);
            //document.getElementById("priceCounter").setAttribute("data-countup", toFixedMax(budzUsd,2).toString()); 
            document.getElementById("priceCounter").innerHTML = "$" + toFixedMax(budzUsd,5);
            document.getElementById("marketCapCounter").innerHTML = "$" + toFixedMax(web3.utils.fromWei(ts) * budzUsd, 2)
 
            var farmer = await budzContract.methods.farmer(activeAccount).call();
+           var rb = web3.utils.fromWei(farmer.totalReferralBonus.toString());
+           var ie = web3.utils.fromWei(farmer.totalStakingInterest.toString());
+           var fb = web3.utils.fromWei(farmer.totalFarmedBudz.toString());
+           document.getElementById("totalReferralBonus").innerHTML = toFixedMax(rb,18) + " BUDZ";
+           document.getElementById("totalReferralBonusValue").innerHTML = "$" + toFixedMax(rb * budzUsd,2);
+           document.getElementById("totalEarnedInterest").innerHTML = toFixedMax(ie,0) + " BUDZ";
+           document.getElementById("totalEarnedInterestValue").innerHTML = "$" + toFixedMax(ie * budzUsd,2);
+           document.getElementById("totalFarmedBudz").innerHTML = toFixedMax(fb,0);
+           document.getElementById("totalFarmedBudzValue").innerHTML = "$" + toFixedMax(fb * budzUsd,2);
            var burnt = web3.utils.fromWei(farmer.totalBurnt);
            console.log(burnt);
             document.getElementById("budzBurnt").innerHTML = toFixedMax(burnt,8);
@@ -64,11 +77,15 @@ setInterval(function(){
             //var burnAdjust = await budzContract.methods.burnAdjust().call();
             var burnAdjust = 3;
             var availableToBurn = (totalStakingInterest * burnAdjust) - burnt;
+            var balance = web3.utils.fromWei(await budzContract.methods.balanceOf(activeAccount).call());
+            document.getElementById("availableToBurn").innerHTML = toFixedMax((availableToBurn),18);  + " BUDZ";
+            document.getElementById("budzBalanceBurningValue").innerHTML = "$" + toFixedMax(balance,2);
+            document.getElementById("budzBalanceStakingValue").innerHTML = "$" + toFixedMax(balance,2);
+            document.getElementById("budzStakedValue").innerHTML = "$" + toFixedMax(staked * budzUsd,2);
+            document.getElementById("budzStaked2Value").innerHTML = "$" + toFixedMax(staked * budzUsd,2);
+            document.getElementById("budzStakingRewardsValue").innerHTML = "$" + toFixedMax(claimable * budzUsd,2);
+            document.getElementById("budzStakingRewardsValue").innerHTML = "$" + toFixedMax(claimable * budzUsd,2);
 
-            document.getElementById("availableToBurn").innerHTML = toFixedMax((availableToBurn),5);  + " BUDZ";
-
-
-           var balance = web3.utils.fromWei(await budzLpContract.methods.balanceOf(activeAccount).call());
            document.getElementById("budzBnbBalance").innerHTML = toFixedMax(balance, 8);
            balance = web3.utils.fromWei(await new web3.eth.Contract(cakev2Abi, cakeEthBnb).methods.balanceOf(activeAccount).call());
            document.getElementById("ethBnbBalance").innerHTML = toFixedMax(balance, 8);

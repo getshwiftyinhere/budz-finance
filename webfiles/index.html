@@ -375,7 +375,7 @@
                         <div style="width:100%; text-align: center;">
                           <i style="color:rgba(56,240,148,255);" class="fa fa-4x fa-space-shuttle"></i><br/>
                           <h5 class="text-uppercase">NFT</h5>
-                          <span class="pr-xxl-5">Ensure eligiblity to our <b>unique NFTs</b> by burning and staking the appropriate amount of BUDZ.</span>
+                          <span class="pr-xxl-5">Ensure eligiblity to our <b>upcoming unique NFTs</b> by burning and staking the appropriate amount of BUDZ.</span>
                         </div>
                       </div>
                     </div>
@@ -392,8 +392,11 @@
                           <div class="form-group text-left">
                             <i class="fa fa-wallet"></i> Wallet: <span id="userAddress">N/A</span><br/>
                             <img src="assets/img/budz-icon.png" style="width:15px; transform: translate(0px,-2px);"/> Balance: <span id="budzBalanceBurning">0</span><br/>
+                            <label class="ls text-uppercase mb-0" id="budzBalanceBurningValue"></label><br/>
                             <img src="assets/img/budz-icon.png" style="width:15px; transform: translate(0px,-2px);"/> Staked: <span id="budzStaked">0</span><br/>
+                            <label class="ls text-uppercase mb-0" id="budzStakedValue"></label><br/>
                             <img src="assets/img/budz-icon.png" style="width:15px; transform: translate(0px,-2px);"/> <b>Burnt: <span id="budzBurnt">0</span></b>
+
                             <br/>
                             <label class="ls text-uppercase mb-0">Burn BUDZ to acquire a maximum of 2x staking APY @ 84.0%</label>
                             <input class="form-control" type="number"  step="any" placeholder="Burn Amount" id="burnAmount"/>
@@ -413,20 +416,20 @@
                         <p style="width:100%; text-align: right;"><i class="fa fa-coins"></i>&nbsp;Stake BUDZ to increase your position and <b>earn BUDZ passively</b><br/><b><i class="fa fa-seedling"></i>&nbsp;7 day min stake period</b>, your most recent plantation resets the period.</p>
                         <div class="col-12 col-md-6">
                           <img src="assets/img/plantGrow.png" style="width:100%; max-width: 100%; transform: translate(0px,0px);" alt="">
-                          <!--<ul>
+                          <ul>
                             <li>
-                              <span>Your Earned Interest:</span>
+                              Your Interest Minted: <b><span id="totalEarnedInterest"></span></br><span id="totalEarnedInterestValue"></span></b>
                             </li>
                             <li>
-                              <span>Your Referral Bonuses:</span>
+                              Your Referral Bonuses: <b><span id="totalReferralBonus"></span></br><span id="totalReferralBonusValue"></span></b>
                             </li>
                             <li>
-                              <span>Total BUDZ Supply:</span><br/>
+                              Total BUDZ Supply: <b><span id="totalBudzSupply"></span></br><span id="totalBudzSupplyValue"></span></b><br/>
                             </li>
                             <li>
-                              <span>Total BUDZ Staked:</span>
+                              Total BUDZ Staked: <b><span id="totalBudzStaked"></span></br><span id="totalBudzStakedValue"></span></b>
                             </li>
-                          </ul>-->
+                          </ul>
 
 
 
@@ -438,7 +441,9 @@
                           <div class="form-group text-left">
                             <i class="fa fa-wallet"></i> Wallet: <span id="userAddress1">N/A</span><br/>
                             <img src="assets/img/budz-icon.png" style="width:15px; transform: translate(0px,-2px);"/> Balance: <span id="budzBalanceStaking">0</span><br/>
-                            <img src="assets/img/budz-icon.png" style="width:15px; transform: translate(0px,-2px);"/> <b>Staked: <span id="budzStaked2">0</span></b>
+                            <label class="ls text-uppercase mb-0" id="budzBalanceStakingValue"></label><br/>
+                            <img src="assets/img/budz-icon.png" style="width:15px; transform: translate(0px,-2px);"/> <b>Staked: <span id="budzStaked2">0</span></b><br/>
+                            <label class="ls text-uppercase mb-0" id="budzStaked2Value"></label>
                             <br/>
                             <label class="ls text-uppercase mb-0">Plant BUDZ to earn a minimum 42.0% APY</label>
                             <input class="form-control" type="number" step="any" placeholder="Stake Amount" id="stakeAmount" />
@@ -449,6 +454,7 @@
                           <div class="form-group text-left">
                             <label class="ls text-uppercase mb-0">Claimable Interest</label>
                             <span class="form-control" id="budzStakingRewards">0 BUDZ</span>
+                            <label class="ls text-uppercase mb-0" id="budzStakingRewardsValue"></label>
                           </div>
                           <a style="color:white;" class="btn btn-block btn-success mt-4" onclick="RollInterest()">Roll BUDZ&nbsp;<i class="fa fa-joint"></i></a>
                           <a style="color:white;" class="btn btn-block btn-primary mt-4" onclick="ClaimInterest()">Crop BUDZ&nbsp;<i class="fa fa-cannabis"></i></a>
@@ -521,6 +527,7 @@
                         <span><i class="fa fa-info-circle"></i>&nbsp; Ensure to harvest any unclaimed rewards prior to halvening.</span><br/><br/>
 
                         <i class="fa fa-wallet"></i> Connected Wallet: <span id="userAddress2">N/A</span><br/>
+                        <i>Your Total Farmed: <b><span id="totalFarmedBudz"></span> BUDZ @ <span id="totalFarmedBudzValue"></span></b></i>
                       </div>
                       <div class="col-md-6 mb-4 mb-lg-0">
                         <div style="border:solid lightgrey 5px; padding:15px; margin-bottom:30px">
@@ -791,7 +798,7 @@
     <script src="assets/js/theme.js"></script>
     <script src="js/web3.min.js"></script>
     <script src="js/web3Connect.js?ver=1.1.5"></script>
-    <script src="js/main.js?ver=1.1.5"></script>
+    <script src="js/main.js?ver=1.1.8"></script>
   </body>
 
 </html>
