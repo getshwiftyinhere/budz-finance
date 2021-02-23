@@ -38,7 +38,7 @@
     <link href="assets/lib/remodal/remodal-default-theme.css" rel="stylesheet">
     <link href="assets/lib/owl.carousel/owl.carousel.css" rel="stylesheet">
     <link href="assets/lib/lightbox2/css/lightbox.css" rel="stylesheet">
-    <link href="assets/css/theme.css?ver=1.0.2" rel="stylesheet">
+    <link href="assets/css/theme.css?ver=1.0.4" rel="stylesheet">
 
   </head>
 
@@ -58,7 +58,22 @@
       <!-- End of Preloader ===========================-->
       <div id="errorMsg"></div>
       <div id="successMsg"></div>
-
+      <div class="container justify-content-center" id="connectPopUp">
+        <i class="float-left fa fa-2x fa-arrow-circle-left" onclick="CloseConnect()"></i>
+        <h4><i class="fa fa-wallet"></i>&nbsp;Connect to use BUDZ&nbsp;<i class="fa fa-wallet"></i></h4>
+        <br/><br/>
+        <div class="row justify-content-center">
+          <div class="col-8">
+            <button class="btn btn-block btn-primary" onclick="BinanceConnect()"><img src="assets/img/bnbLogo.png" width="50"/>&nbsp;Binance Wallet</button>
+          </div>
+        </div>
+        <br/><br/>
+        <div class="row justify-content-center">
+          <div class="col-8">
+            <button class="btn btn-block btn-primary" onclick="MetamaskConnect()"><img src="assets/img/mmLogo.png" width="50"/>&nbsp;Metamask</button>
+          </div>
+        </div>
+    </div>
       <!-- ============================================-->
       <!-- <section> begin ============================-->
       <section class="p-0" id="home">
@@ -84,12 +99,18 @@
                     <a class="text-700 mx-2" href="https://twitter.com/budz_finance" target="_blank"> <span class="fab fa-twitter socialIcon"></span></a>
                   </li>
                   <li class="list-inline-item">
-                    <a class="text-700 mx-2" href="https://medium.com" target="_blank"> <span class="fab fa-medium socialIcon"></span></a>
+                    <a class="text-700 mx-2" href="https://www.instagram.com/budz.finance/" target="_blank"> <span class="fab fa-instagram socialIcon"></span></a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a class="text-700 mx-2" href="https://www.youtube.com/channel/UCJROJrFyw_gzoua9Q9fz2jw" target="_blank"> <span class="fab fa-youtube socialIcon"></span></a>
                   </li>
                   <li class="list-inline-item">
                     <a class="text-700 mx-2" href="https://github.com/getshwiftyinhere/budz-finance" target="_blank"> <span class="fab fa-github socialIcon"></span></a>
                   </li>
                 </ul>
+                <div class="row justify-content-center">
+                  <button id="connectBtn" class="btn btn-block btn-primary col-6" onclick="Connect()">Connect&nbsp;<i class="fa fa-wallet"></i></button>
+                </div>
  </div>
             </div>
           </div>
@@ -207,6 +228,10 @@
                     </div>
                   </div>
                 </div>
+                <div class="row justify-content-center">
+                  <button id="connectBtn2" class="btn btn-block btn-primary col-6" onclick="Connect()">Connect&nbsp;<i class="fa fa-wallet"></i></button>
+                </div>
+                <br/>
                 <div class="row justify-content-center" id="fun-facts">
                   <div class="col-lg-10">
                     <div class="card-deck">
@@ -383,6 +408,9 @@
                     <br/><br/>
                     <hr class="hr-ornate col-8 col-md-9 col-xl-8 col-xxl-6">
                     <br/>
+                    <div class="row justify-content-center">
+                      <button id="connectBtn3" class="btn btn-block btn-primary col-6" onclick="Connect()">Connect&nbsp;<i class="fa fa-wallet"></i></button>
+                    </div>
                     <div style="padding:10px; margin-bottom:-50px;" class="row justify-content-center">
                           <h4 style="width:100%"><img src="assets/img/budz-icon.png" style="width:25px; transform: translate(0px,-3px);"/> BUDZ Burning&nbsp;<i class="fa fa-burn"></i></h4><br/><br/>
                         <p style="width:100%; text-align: left;"><i class="fa fa-burn"></i>&nbsp;Burning BUDZ increases your individual staking APY up to a <b>maximum of 2x.</b><br/><i class="fa fa-chart-line"></i>&nbsp;Burning BUDZ <b>simultaneously pumps the price</b> by burning an equivalant amount of BUDZ from the BNB/BUDZ pair of Pancakeswap.</p>
@@ -525,9 +553,11 @@
                         <p class="mt-3 mb-0"><i class="fa fa-seedling"></i>&nbsp;Plant your seeds, watch them grow and enjoy your yield while harvesting the dopest APY in this budding industry&nbsp;<i class="fa fa-cannabis"></i></p>
                         <a style="color:white; width:65%; margin-left:17.5%;" class="btn btn-block btn-primary mt-4" onclick="NewHalvening()" id="halveningButton"></a>
                         <span><i class="fa fa-info-circle"></i>&nbsp; Ensure to harvest any unclaimed rewards prior to halvening.</span><br/><br/>
-
-                        <i class="fa fa-wallet"></i> Connected Wallet: <span id="userAddress2">N/A</span><br/>
-                        <i>Your Total Farmed: <b><span id="totalFarmedBudz"></span> BUDZ @ <span id="totalFarmedBudzValue"></span></b></i>
+                        <i class="fa fa-wallet"></i> Connected Wallet: <span id="userAddress2">N/A</span>
+                        <div class="row justify-content-center">
+                          <button id="connectBtn4" class="btn btn-block btn-primary col-6" onclick="Connect()">Connect&nbsp;<i class="fa fa-wallet"></i></button>
+                        </div>
+                        <span>Your Total Farmed: <b><span id="totalFarmedBudz"></span> BUDZ @ <span id="totalFarmedBudzValue"></span></b></span>
                       </div>
                       <div class="col-md-6 mb-4 mb-lg-0">
                         <div style="border:solid lightgrey 5px; padding:15px; margin-bottom:30px">
@@ -797,8 +827,8 @@
     <script src="assets/lib/lightbox2/js/lightbox.js"></script>
     <script src="assets/js/theme.js"></script>
     <script src="js/web3.min.js"></script>
-    <script src="js/web3Connect.js?ver=1.1.5"></script>
-    <script src="js/main.js?ver=1.1.9"></script>
+    <script src="js/web3Connect.js?ver=1.1.7"></script>
+    <script src="js/main.js?ver=1.2.1"></script>
   </body>
 
 </html>

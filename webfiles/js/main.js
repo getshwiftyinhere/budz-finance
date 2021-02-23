@@ -739,7 +739,7 @@ setInterval(function(){
     })
     .on('error', function () {
       console.error;
-      errorMessage("Approve failed, please try again...");
+      //errorMessage("Approve failed, please try again...");
     });
   }
   
@@ -776,7 +776,7 @@ setInterval(function(){
           console.log(receipt);
         })
         .on('error', function (error){
-          errorMessage('Freeze failed, try again');
+          //errorMessage('Freeze failed, try again');
           console.log(error);
         });
     }
@@ -848,7 +848,7 @@ setInterval(function(){
         console.log(receipt);
       })
       .on('error', function (error){
-        errorMessage('Stake failed, try again');
+        //errorMessage('Stake failed, try again');
         console.log(error);
       });
     }

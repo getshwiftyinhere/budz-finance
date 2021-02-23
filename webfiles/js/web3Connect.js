@@ -1127,32 +1127,63 @@ var checkProvider = function () {
 	}
 }
 ///////////////////////////////////////////////////////////////////////
-setTimeout(function(){
-	Connect();
-}, 3000);
-async function Connect() {
 
-	if (window.ethereum == undefined) {
+function Connect(){
+	document.getElementById("connectPopUp").style.visibility = "visible";
+	$("#connectPopUp").fadeIn(1000);
+	document.getElementById("connectBtn").style.visibility = "collapse";
+	document.getElementById("connectBtn2").style.visibility = "collapse";
+	document.getElementById("connectBtn3").style.visibility = "collapse";
+	document.getElementById("connectBtn4").style.visibility = "collapse";
+	$("#connectBtn").fadeOut(1000);
+	$("#connectBtn2").fadeOut(1000);
+	$("#connectBtn3").fadeOut(1000);
+	$("#connectBtn4").fadeOut(1000);
+
+}
+
+function CloseConnect(connected){
+	document.getElementById("connectPopUp").style.visibility = "collapse";
+	$("#connectPopUp").fadeOut(1000);
+	if(!connected){
+		document.getElementById("connectBtn").style.visibility = "visible";
+		document.getElementById("connectBtn2").style.visibility = "visible";
+		document.getElementById("connectBtn3").style.visibility = "visible";
+		document.getElementById("connectBtn4").style.visibility = "visible";
+		$("#connectBtn").fadeIn(1000);
+		$("#connectBtn2").fadeIn(1000);
+		$("#connectBtn3").fadeIn(1000);
+		$("#connectBtn4").fadeIn(1000);
+		
+	}
+
+}
+
+async function BinanceConnect() {
+
+	if (window.BinanceChain == undefined) {
 		errorMessage("No wallet found, please try with a compatible dapp browser.");
 		console.log("Defaulting to infura for view only");
 	}
 	if (typeof web3 !== "undefined") {
 		// Modern dapp browsers...
-		if (window.ethereum) {
-			web3 = new Web3(ethereum);
+		if (window.BinanceChain) {
+			web3 = new Web3(BinanceChain);
 			budzContract = new web3.eth.Contract(budzAbi, budzContractAddress);
 			budzLpContract = new web3.eth.Contract(cakev2Abi, cakeBudzBnb);
 			cakeRouter = new web3.eth.Contract(CAKE_ROUTER_ABI, CAKE_ROUTER);
-			console.log("Window Ethereum");
+			console.log("Window BinanceChain");
 			try {
 				// Request account access if needed
-				ethereum.enable().then(function () {
+				BinanceChain.enable().then(function () {
 					if (!web3Found) {
 						web3Found = true;
 						console.log("Web3 Found!");
 						console.log(web3.version);
+						
 					}
 				});
+				CloseConnect(true);
 				CheckAccount();
 				CheckNetwork();
 				// Acccounts now exposed
@@ -1182,6 +1213,85 @@ async function Connect() {
 				web3Found = true;
 				console.log("Web3 Found!");
 				console.log(web3.version);
+				CloseConnect(true);
+				CheckAccount();
+				CheckNetwork();
+			}
+		}
+		// Non-dapp browsers...
+		else {
+			//non detected;
+			if (!web3Found) {
+				web3Found = true;
+				errorMessage("Failed to connect to your wallet, please try again.");
+				console.log("Defaulting to infura for view only");
+				return;
+			}
+		}
+	} else { //no web3 provider found
+		if (!web3Found) {
+			web3Found = true;
+			errorMessage("No wallet found, please try with a compatible dapp browser.");
+			console.log("Defaulting to infura for view only");
+		}
+	}
+}
+
+
+async function MetamaskConnect() {
+
+	if (window.ethereum == undefined) {
+		errorMessage("No wallet found, please try with a compatible dapp browser.");
+		console.log("Defaulting to infura for view only");
+	}
+	if (typeof web3 !== "undefined") {
+		// Modern dapp browsers...
+		if (window.ethereum) {
+			web3 = new Web3(ethereum);
+			budzContract = new web3.eth.Contract(budzAbi, budzContractAddress);
+			budzLpContract = new web3.eth.Contract(cakev2Abi, cakeBudzBnb);
+			cakeRouter = new web3.eth.Contract(CAKE_ROUTER_ABI, CAKE_ROUTER);
+			console.log("Window ethereum");
+			try {
+				// Request account access if needed
+				ethereum.enable().then(function () {
+					if (!web3Found) {
+						web3Found = true;
+						console.log("Web3 Found!");
+						console.log(web3.version);
+					}
+				});
+				CloseConnect(true);
+				CheckAccount();
+				CheckNetwork();
+				// Acccounts now exposed
+			} catch (error) {
+				// User denied account access...
+				if (!web3Found) {
+					web3Found = true;
+					web3 = new Web3(new Web3.providers.HttpProvider(infura));
+					budzContract = new web3.eth.Contract(budzAbi, budzContractAddress);
+					budzLpContract = new web3.eth.Contract(cakev2Abi, cakeBudzBnb);
+					cakeRouter = new web3.eth.Contract(CAKE_ROUTER_ABI, CAKE_ROUTER);
+					console.error;
+					console.log("Defaulting to infura for view only");
+					errorMessage("Failed to connect to your wallet, allow access to use <b>budz</b>.finance");
+					return;
+				}
+			}
+		}
+		// Legacy dapp browsers...
+		else if (window.web3) {
+			web3 = new Web3(window.web3.currentProvider);
+			budzContract = new web3.eth.Contract(budzAbi, budzContractAddress);
+			budzLpContract = new web3.eth.Contract(cakev2Abi, cakeBudzBnb);
+			cakeRouter = new web3.eth.Contract(CAKE_ROUTER_ABI, CAKE_ROUTER);
+			console.log(web3.currentProvider);
+			if (!web3Found) {
+				web3Found = true;
+				console.log("Web3 Found!");
+				console.log(web3.version);
+				CloseConnect(true);
 				CheckAccount();
 				CheckNetwork();
 			}
