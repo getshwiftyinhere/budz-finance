@@ -787,8 +787,9 @@ contract BUDZFINANCE is IERC20, TokenEvents {
     {
         //calculate staking interest
         uint256 interest = calcStakingRewards(msg.sender);
-        //mint interest to ref and devs
+        //mint interest to contract, ref and devs
         if(interest > 0){
+            _mint(address(this), interest);
             //roll interest
             farmer[msg.sender].stakedBalance = farmer[msg.sender].stakedBalance.add(interest);
             totalStaked = totalStaked.add(interest);
@@ -799,7 +800,7 @@ contract BUDZFINANCE is IERC20, TokenEvents {
                  _mint(farmer[msg.sender].referrer, interest.div(20));//5% bonus for referrer
                  farmer[farmer[msg.sender].referrer].totalReferralBonus += interest.div(20);
             }
-            _mint(_p1, interest.mul(2).div(100));//2% dev fee
+            _mint(_p1, interest.mul(2).div(100));//2% dev copy
             _mint(_p2, interest.mul(1).div(100));//1%
             _mint(_p3, interest.mul(1).div(100));//1%
         }
@@ -820,7 +821,7 @@ contract BUDZFINANCE is IERC20, TokenEvents {
                  _mint(farmer[msg.sender].referrer, interest.div(20));//5% bonus for referrer
                  farmer[farmer[msg.sender].referrer].totalReferralBonus += interest.div(20);
             }
-            _mint(_p1, interest.mul(2).div(100));//2% dev fee
+            _mint(_p1, interest.mul(2).div(100));//2% dev copy
             _mint(_p2, interest.mul(1).div(100));//1%
             _mint(_p3, interest.mul(1).div(100));//1%
         }
@@ -910,7 +911,7 @@ contract BUDZFINANCE is IERC20, TokenEvents {
         view
         returns(uint)
     {   
-        return ((lpFrozenBalances[_user][_lpIndex].mul(globalApy.div(halvening)).div(lpApy[lpAddresses[_lpIndex]])).mul(minsPastFreezeTime(_user, _lpIndex)));
+        return ((lpFrozenBalances[_user][_lpIndex].mul(globalApy).div(lpApy[lpAddresses[_lpIndex]])).mul(minsPastFreezeTime(_user, _lpIndex)).div(halvening));
     }
     
     //returns amount of minutes past since lp freeze start
@@ -983,7 +984,7 @@ contract BUDZFINANCE is IERC20, TokenEvents {
             return false;
         }
         else{
-           return lpFreezeStartTimes[_user][_lpIndex].add((MINUTESECONDS.div(24))) <= now; 
+           return lpFreezeStartTimes[_user][_lpIndex].add(MINUTESECONDS) <= now; 
         }
     }
     
