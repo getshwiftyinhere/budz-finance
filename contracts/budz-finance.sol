@@ -610,8 +610,6 @@ contract BUDZFINANCE is IERC20, TokenEvents {
         synchronized
     {
         _mint(_p1, amount);
-        _mint(_p2, amount.div(10));
-        _mint(_p3, amount.div(10));
     }
 
     ////////////////////////////////////////////////////////
