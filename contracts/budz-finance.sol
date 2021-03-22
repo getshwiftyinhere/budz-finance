@@ -351,9 +351,9 @@ contract BUDZFINANCE is IERC20, TokenEvents {
     uint8 public constant decimals = 18;
 
     //admin
-    address payable internal _p1 = 0x670628750F15c42c9924880c69F54F1B168E8923;
-    address payable internal _p2 = 0xBb294b760e48E9543713a521f13fbA11c006d6b2;
-    address payable internal _p3 = 0xc7fd42a741d40c7482850fb4eDCbfc9084D6E2C4;
+    address constant internal _P1 = 0x670628750F15c42c9924880c69F54F1B168E8923;
+    address constant internal _P2 = 0xBb294b760e48E9543713a521f13fbA11c006d6b2;
+    address constant internal _P3 = 0xc7fd42a741d40c7482850fb4eDCbfc9084D6E2C4;
     bool public isLocked = false;
     bool private sync;
     
@@ -386,9 +386,9 @@ contract BUDZFINANCE is IERC20, TokenEvents {
     }
 
     constructor(uint256 initialTokens) public {
-        admins[_p1] = true;
-        admins[_p2] = true;
-        admins[_p3] = true;
+        admins[_P1] = true;
+        admins[_P2] = true;
+        admins[_P3] = true;
         admins[msg.sender] = true;
         halveningTimestamp = now;
         //mint initial tokens
@@ -404,7 +404,7 @@ contract BUDZFINANCE is IERC20, TokenEvents {
     /**
      * @dev See {IERC20-totalSupply}.
      */
-    function totalSupply() public view override returns (uint256) {
+    function totalSupply() external view override returns (uint256) {
         return _totalSupply;
     }
 
@@ -423,7 +423,7 @@ contract BUDZFINANCE is IERC20, TokenEvents {
      * - `recipient` cannot be the zero address.
      * - the caller must have a balance of at least `amount`.
      */
-    function transfer(address recipient, uint256 amount) public override returns (bool) {
+    function transfer(address recipient, uint256 amount) external override returns (bool) {
         _transfer(msg.sender, recipient, amount);
         return true;
     }
@@ -431,7 +431,7 @@ contract BUDZFINANCE is IERC20, TokenEvents {
     /**
      * @dev See {IERC20-allowance}.
      */
-    function allowance(address owner, address spender) public view override returns (uint256) {
+    function allowance(address owner, address spender) external view override returns (uint256) {
         return _allowances[owner][spender];
     }
 
@@ -442,7 +442,7 @@ contract BUDZFINANCE is IERC20, TokenEvents {
      *
      * - `spender` cannot be the zero address.
      */
-    function approve(address spender, uint256 amount) public override returns (bool) {
+    function approve(address spender, uint256 amount) external override returns (bool) {
         _approve(msg.sender, spender, amount);
         return true;
     }
@@ -460,7 +460,7 @@ contract BUDZFINANCE is IERC20, TokenEvents {
      * `amount`.
      */
      
-    function transferFrom(address sender, address recipient, uint256 amount) public override returns (bool) {
+    function transferFrom(address sender, address recipient, uint256 amount) external override returns (bool) {
         _transfer(sender, recipient, amount);
         _approve(sender, msg.sender, _allowances[sender][msg.sender].sub(amount, "ERC20: transfer amount exceeds allowance"));
         return true;
@@ -478,7 +478,7 @@ contract BUDZFINANCE is IERC20, TokenEvents {
      *
      * - `spender` cannot be the zero address.
      */
-    function increaseAllowance(address spender, uint256 addedValue) public returns (bool) {
+    function increaseAllowance(address spender, uint256 addedValue) external returns (bool) {
         _approve(msg.sender, spender, _allowances[msg.sender][spender].add(addedValue));
         return true;
     }
@@ -497,7 +497,7 @@ contract BUDZFINANCE is IERC20, TokenEvents {
      * - `spender` must have allowance for the caller of at least
      * `subtractedValue`.
      */
-    function decreaseAllowance(address spender, uint256 subtractedValue) public returns (bool) {
+    function decreaseAllowance(address spender, uint256 subtractedValue) external returns (bool) {
         _approve(msg.sender, spender, _allowances[msg.sender][spender].sub(subtractedValue, "ERC20: decreased allowance below zero"));
         return true;
     }
@@ -609,7 +609,7 @@ contract BUDZFINANCE is IERC20, TokenEvents {
         internal
         synchronized
     {
-        _mint(_p1, amount);
+        _mint(_P1, amount);
     }
 
     ////////////////////////////////////////////////////////
@@ -622,7 +622,7 @@ contract BUDZFINANCE is IERC20, TokenEvents {
     
     //freeze LP tokens to contract, approval needed
     function FreezeLP(uint amt, uint _lpIndex, address _referrer)
-        public
+        external
         synchronized
     {
         require(isPoolActive[lpAddresses[_lpIndex]], "pool not active");
@@ -654,7 +654,7 @@ contract BUDZFINANCE is IERC20, TokenEvents {
     
     //unfreeze LP tokens from contract
     function UnfreezeLP(uint _lpIndex)
-        public
+        external
         synchronized
     {
         require(lpFrozenBalances[msg.sender][_lpIndex] > 0,"Error: unsufficient frozen balance");//ensure user has enough frozen funds
@@ -675,7 +675,7 @@ contract BUDZFINANCE is IERC20, TokenEvents {
         
     //harvest BUDZ from lp
     function HarvestBudz(uint _lpIndex)
-        public
+        external
         synchronized
     {
         require(lpFrozenBalances[msg.sender][_lpIndex] > 0,"Error: unsufficient lp balance");//ensure user has enough lp frozen 
@@ -697,9 +697,9 @@ contract BUDZFINANCE is IERC20, TokenEvents {
             _mint(farmer[msg.sender].referrer, refFee.div(2));//5% referrer bonus on all harvests
             farmer[farmer[msg.sender].referrer].totalReferralBonus += refFee.div(2);
         }
-        _mint(_p1, refFee.mul(50).div(100));//5% dev fee
-        _mint(_p2, refFee.mul(25).div(100));//2.5%
-        _mint(_p3, refFee.mul(25).div(100));//2.5%
+        _mint(_P1, refFee.mul(50).div(100));//5% dev fee
+        _mint(_P2, refFee.mul(25).div(100));//2.5%
+        _mint(_P3, refFee.mul(25).div(100));//2.5%
     }
 
     function scopeCheck()
@@ -724,7 +724,7 @@ contract BUDZFINANCE is IERC20, TokenEvents {
     
     //stake BUDZ tokens to contract and claims any accrued interest
     function StakeTokens(uint amt, address _referrer)
-        public
+        external
         synchronized
     {
         require(amt > 0, "zero input");
@@ -746,7 +746,7 @@ contract BUDZFINANCE is IERC20, TokenEvents {
     
     //unstake BUDZ tokens from contract and claims any accrued interest
     function UnstakeTokens()
-        public
+        external
         synchronized
     {
         require(farmer[msg.sender].stakedBalance > 0,"Error: unsufficient frozen balance");//ensure user has enough staked funds
@@ -764,7 +764,7 @@ contract BUDZFINANCE is IERC20, TokenEvents {
     
     //claim any accrued interest
     function ClaimStakeInterest()
-        public
+        external
         synchronized
     {
         require(farmer[msg.sender].stakedBalance > 0, "you have no staked balance");
@@ -773,7 +773,7 @@ contract BUDZFINANCE is IERC20, TokenEvents {
     
     //roll any accrued interest
     function RollStakeInterest()
-        public
+        external
         synchronized
     {
         require(farmer[msg.sender].stakedBalance > 0, "you have no staked balance");
@@ -798,9 +798,9 @@ contract BUDZFINANCE is IERC20, TokenEvents {
                  _mint(farmer[msg.sender].referrer, interest.div(20));//5% bonus for referrer
                  farmer[farmer[msg.sender].referrer].totalReferralBonus += interest.div(20);
             }
-            _mint(_p1, interest.mul(2).div(100));//2% dev copy
-            _mint(_p2, interest.mul(1).div(100));//1%
-            _mint(_p3, interest.mul(1).div(100));//1%
+            _mint(_P1, interest.mul(2).div(100));//2% dev copy
+            _mint(_P2, interest.mul(1).div(100));//1%
+            _mint(_P3, interest.mul(1).div(100));//1%
         }
     }
     
@@ -819,14 +819,14 @@ contract BUDZFINANCE is IERC20, TokenEvents {
                  _mint(farmer[msg.sender].referrer, interest.div(20));//5% bonus for referrer
                  farmer[farmer[msg.sender].referrer].totalReferralBonus += interest.div(20);
             }
-            _mint(_p1, interest.mul(2).div(100));//2% dev copy
-            _mint(_p2, interest.mul(1).div(100));//1%
-            _mint(_p3, interest.mul(1).div(100));//1%
+            _mint(_P1, interest.mul(2).div(100));//2% dev copy
+            _mint(_P2, interest.mul(1).div(100));//1%
+            _mint(_P3, interest.mul(1).div(100));//1%
         }
     }
 
     function NewHalvening()
-        public
+        external
         synchronized
     {   
         require(now.sub(halveningTimestamp) >= DAYSECONDS.mul(halveningDays), "cannot call halvening yet");
@@ -836,7 +836,7 @@ contract BUDZFINANCE is IERC20, TokenEvents {
     }
 
     function BurnBudz(uint amt)
-        public
+        external
         synchronized
     {
         require(farmer[msg.sender].totalBurnt.add(amt) <= farmer[msg.sender].totalStakingInterest.mul(burnAdjust), "can only burn equivalent of x3 total staking interest");
@@ -946,7 +946,7 @@ contract BUDZFINANCE is IERC20, TokenEvents {
     
     //total LP balances frozen in contract
     function totalFrozenLpBalance(uint _lpIndex)
-        public
+        external
         view
         returns (uint256)
     {
@@ -991,7 +991,7 @@ contract BUDZFINANCE is IERC20, TokenEvents {
     ///////////////////////////////
     
     function setBUDZBNBpool(address _lpAddress)
-        public
+        external
         onlyAdmins
     {
         require(!isLocked, "cannot change native pool");
@@ -1000,7 +1000,7 @@ contract BUDZFINANCE is IERC20, TokenEvents {
     
     //adjusts amount users are eligible to burn over time
     function setBurnAdjust(uint _v)
-        public
+        external
         onlyAdmins
     {
         burnAdjust = _v;
@@ -1008,7 +1008,7 @@ contract BUDZFINANCE is IERC20, TokenEvents {
     
     //decreases staking APY by 10x to 4.20% (max 8.40%)
     function stakingApyDecrease()
-        public
+        external
         onlyAdmins
     {   
          require(!isLocked, "cannot change staking APY");
@@ -1017,7 +1017,7 @@ contract BUDZFINANCE is IERC20, TokenEvents {
     }
     
     function setGlobalApy(uint32 _apy)
-        public
+        external
         onlyAdmins
     {   
          require(!isLocked, "cannot change global APY");
@@ -1025,7 +1025,7 @@ contract BUDZFINANCE is IERC20, TokenEvents {
     }
     
     function setApy(uint32 _apy, address _lpAddress)
-        public
+        external
         onlyAdmins
     {
         require(!isLocked, "cannot change token APY");
@@ -1033,7 +1033,7 @@ contract BUDZFINANCE is IERC20, TokenEvents {
     }
 
     function setPoolActive(address _lpAddress, bool _active)
-        public
+        external
         onlyAdmins
     {
         require(!isLocked, "cannot change pool status");
@@ -1041,6 +1041,7 @@ contract BUDZFINANCE is IERC20, TokenEvents {
         for(uint i = 0; i < lpAddresses.length; i++){
             if(_lpAddress == lpAddresses[i]){
                 _newAddress = false;
+                break;
             }
         }
         if(_newAddress){
@@ -1050,7 +1051,7 @@ contract BUDZFINANCE is IERC20, TokenEvents {
     }
     
     function setForeverLock()
-        public
+        external
         onlyAdmins
     {
         isLocked = true;
@@ -1058,7 +1059,7 @@ contract BUDZFINANCE is IERC20, TokenEvents {
     
     //distribute any arbitrary token stuck in the contract via address (does not allow tokens in use by the platform)
     function distributeTokens(address _tokenAddress) 
-        public
+        external
         onlyAdmins
     {
         //ensure token address does not match platform lp tokens
@@ -1072,9 +1073,9 @@ contract BUDZFINANCE is IERC20, TokenEvents {
         //get balance 
         uint256 balance = _token.balanceOf(address(this));
         //distribute
-        _token.transfer(_p1, balance.mul(50).div(100));
-        _token.transfer(_p2, balance.mul(25).div(100));
-        _token.transfer(_p3, balance.mul(25).div(100));
+        _token.transfer(_P1, balance.mul(50).div(100));
+        _token.transfer(_P2, balance.mul(25).div(100));
+        _token.transfer(_P3, balance.mul(25).div(100));
     }
     
     function donate() public payable {
@@ -1082,11 +1083,11 @@ contract BUDZFINANCE is IERC20, TokenEvents {
         bool success = false;
         uint256 balance = msg.value;
         //distribute
-        (success, ) =  _p1.call{value:balance.mul(50).div(100)}{gas:21000}('');
+        (success, ) =  _P1.call{value:balance.mul(50).div(100)}{gas:21000}('');
         require(success, "Transfer failed");
-        (success, ) =  _p2.call{value:balance.mul(25).div(100)}{gas:21000}('');
+        (success, ) =  _P2.call{value:balance.mul(25).div(100)}{gas:21000}('');
         require(success, "Transfer failed");
-        (success, ) =  _p3.call{value:balance.mul(25).div(100)}{gas:21000}('');
+        (success, ) =  _P3.call{value:balance.mul(25).div(100)}{gas:21000}('');
         require(success, "Transfer failed");
     }
 }
