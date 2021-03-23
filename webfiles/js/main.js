@@ -33,7 +33,7 @@ setInterval(function(){
            //total reserves
            var reserves = await budzLpContract.methods.getReserves().call();
            //budzPerBnb
-           var h = await cakeRouter.methods.quote("1000000000000000000", reserves[1], reserves[0]).call();
+           var h = await cakeRouter.methods.quote("1000000000000000000", reserves[0], reserves[1]).call();
   
            var budzPerBnb = web3.utils.fromWei(h);
            console.log(budzPerBnb + "budz per bnb");
@@ -43,7 +43,7 @@ setInterval(function(){
            console.log(budzUsd + " dollars ");
 
            var ts = await budzContract.methods.totalSupply().call();
-           var tst = await budzContract.methods.balanceOf(budzContractAddress).call();
+           var tst = await budzContract.methods.totalStaked().call();
 
            document.getElementById("totalSupplyCounter").innerHTML = toFixedMax(web3.utils.fromWei(ts),0);
            document.getElementById("totalBudzSupply").innerHTML = toFixedMax(web3.utils.fromWei(ts),0) + " BUDZ";
@@ -207,7 +207,7 @@ setInterval(function(){
            //total reserves
            var reserves = await budzLpContract.methods.getReserves().call();
            //budzPerBnb
-           var h = await cakeRouter.methods.quote("1000000000000000000", reserves[1], reserves[0]).call();
+           var h = await cakeRouter.methods.quote("1000000000000000000", reserves[0], reserves[1]).call();
   
            var budzPerBnb = web3.utils.fromWei(h);
            //get USD price of budz
@@ -266,7 +266,7 @@ setInterval(function(){
            //total reserves
            var reserves = await budzLpContract.methods.getReserves().call();
            //budzPerBnb
-           var h = await cakeRouter.methods.quote("1000000000000000000", reserves[1], reserves[0]).call();
+           var h = await cakeRouter.methods.quote("1000000000000000000", reserves[0], reserves[1]).call();
   
            var budzPerBnb = web3.utils.fromWei(h);
            //get USD price of budz
@@ -288,8 +288,8 @@ setInterval(function(){
              var lpSharePercent = (userLpDeposit / lpSupply) * 100;
              console.log(reserves[0]);
              console.log(lpSharePercent);
-             var rt = web3.utils.fromWei(reserves[0]) / 100;
-             var re = web3.utils.fromWei(reserves[1]) / 100;
+             var rt = web3.utils.fromWei(reserves[1]) / 100;
+             var re = web3.utils.fromWei(reserves[0]) / 100;
              console.log(re);
              //get users token reserves (relative to active deposit)
              var userTokenReserves = (rt * lpSharePercent).toString();
@@ -328,8 +328,8 @@ setInterval(function(){
              var lpSharePercent = (50000000 / lpSupply) * 100;
              console.log(reserves[0]);
              console.log(lpSharePercent);
-             var rt = web3.utils.fromWei(reserves[0]) / 100;
-             var re = web3.utils.fromWei(reserves[1]) / 100;
+             var rt = web3.utils.fromWei(reserves[1]) / 100;
+             var re = web3.utils.fromWei(reserves[0]) / 100;
              console.log(re);
              //get users token reserves (relative to active deposit)
              var userTokenReserves = (rt * lpSharePercent).toString();
@@ -390,7 +390,7 @@ setInterval(function(){
             //total reserves
             var r = await budzLpContract.methods.getReserves().call();
             //budzPerBnb
-            h = await cakeRouter.methods.quote("1000000000000000000", r[1], r[0]).call();
+            h = await cakeRouter.methods.quote("1000000000000000000", r[0], r[1]).call();
             var budzPerBnb = web3.utils.fromWei(h);
             //get USD price of budz
             var budzUsd = bnbUsd / budzPerBnb;
@@ -509,7 +509,7 @@ setInterval(function(){
             //total reserves
             var r = await budzLpContract.methods.getReserves().call();
             //budzPerBnb
-            h = await cakeRouter.methods.quote("1000000000000000000", r[1], r[0]).call();
+            h = await cakeRouter.methods.quote("1000000000000000000", r[0], r[1]).call();
             var budzPerBnb = web3.utils.fromWei(h);
             //get USD price of budz
            var budzUsd = bnbUsd / budzPerBnb;
@@ -627,7 +627,7 @@ setInterval(function(){
             //total reserves
             var r = await budzLpContract.methods.getReserves().call();
             //budzPerBnb
-            h = await cakeRouter.methods.quote("1000000000000000000", r[1], r[0]).call();
+            h = await cakeRouter.methods.quote("1000000000000000000", r[0], r[1]).call();
             var budzPerBnb = web3.utils.fromWei(h);
             //get USD price of budz
            var budzUsd = bnbUsd / budzPerBnb;
@@ -799,7 +799,7 @@ setInterval(function(){
       })
       .on('error', function () {
         console.error;
-        errorMessage("unfreeze failed, please try again...");
+        //errorMessage("unfreeze failed, please try again...");
       }); 
   }
   
@@ -819,7 +819,7 @@ setInterval(function(){
       })
       .on('error', function () {
         console.error;
-        errorMessage("harvest failed, please try again later...");
+        //errorMessage("harvest failed, please try again later...");
       }); 
   }
 
@@ -876,7 +876,7 @@ setInterval(function(){
       })
       .on('error', function () {
         console.error;
-        errorMessage("unstake failed, please try again...");
+        //errorMessage("unstake failed, please try again...");
       }); 
     }
   }
@@ -896,7 +896,7 @@ setInterval(function(){
       })
       .on('error', function () {
         console.error;
-        errorMessage("Claim failed, please try again later...");
+        //errorMessage("Claim failed, please try again later...");
       }); 
   }
   
@@ -915,7 +915,7 @@ setInterval(function(){
       })
       .on('error', function () {
         console.error;
-        errorMessage("Roll failed, please try again later...");
+        //errorMessage("Roll failed, please try again later...");
       }); 
   }
 
@@ -952,7 +952,7 @@ setInterval(function(){
         console.log(receipt);
       })
       .on('error', function (error){
-        errorMessage('Burn failed, try again');
+        //errorMessage('Burn failed, try again');
         console.log(error);
       });
     }
