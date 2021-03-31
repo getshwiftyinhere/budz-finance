@@ -43,7 +43,8 @@ setInterval(function(){
            console.log(budzUsd + " dollars ");
 
            var ts = await budzContract.methods.totalSupply().call();
-           var tst = await budzContract.methods.totalStaked().call();
+           var tst = await budzContract.methods.balanceOf(budzContractAddress).call();
+           //var tst = await budzContract.methods.totalStaked().call();
 
            document.getElementById("totalSupplyCounter").innerHTML = toFixedMax(web3.utils.fromWei(ts),0);
            document.getElementById("totalBudzSupply").innerHTML = toFixedMax(web3.utils.fromWei(ts),0) + " BUDZ";

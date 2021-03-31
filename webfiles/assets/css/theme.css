@@ -5,22 +5,49 @@
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+ 
+ #budrunAni{
+  -webkit-animation: bud-run 25s linear infinite;
+  animation: bud-run 25s linear infinite;
+  position: fixed;
+  bottom:0px;
+  left:-250px;
+  z-index: 9999;
+ }
 
+ @-webkit-keyframes bud-run {
+  0% {
+    transform:scaleX(1);
+    left:-750px;
+  }
+  50% {
+    left:4750px;
+    transform:scaleX(1);
+  }
+  51% {
+    transform:scaleX(-1);
+  }
+  100% {
+    transform:scaleX(-1);
+    left:-750px;
+  }
+}
  .addressBreak{
   word-wrap: break-word;
   word-break: break-all;
  }
 
  .pancakeImg{
-   cursor:pointer;
+  cursor:pointer;
   border-radius:10px; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);  width:250px; height:250px;
   box-shadow: 0px 0px 5px 0px black;
   transition: all linear 0.3s;
  }
+
  .pancakeImg:hover{
   width:255px; height:255px;
- box-shadow: 0px 0px 15px 0px black;
- transition: all linear 0.3s;
+  box-shadow: 0px 0px 15px 0px black;
+  transition: all linear 0.3s;
 }
 
 #connectPopUp{
@@ -132,14 +159,17 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 }
 
 body {
-  margin: 0;
+  margin:0;
   font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.45;
   color: #666666;
-  text-align: left;
+  text-align: left;	
   background-color: whitesmoke;
+  background-color: #fff;
+  overflow-x:hidden;
+
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -2489,13 +2519,6 @@ pre code {
   .table-responsive-sm > .table-bordered {
     border: 0;
   }
-
-  #refLinkInfo{
-    font-size: 7px;
-  }
-  #refLinkInfo2{
-    font-size: 7px;
-  }
 }
 
 @media (max-width: 767.98px) {
@@ -2510,10 +2533,10 @@ pre code {
   }
 
   #refLinkInfo{
-    font-size: 8px;
+    font-size: 7px;
   }
   #refLinkInfo2{
-    font-size: 8px;
+    font-size: 7px;
   }
 }
 
@@ -2527,12 +2550,11 @@ pre code {
   .table-responsive-lg > .table-bordered {
     border: 0;
   }
-
   #refLinkInfo{
-    font-size: 10px;
+    font-size: 8px;
   }
   #refLinkInfo2{
-    font-size:10px;
+    font-size: 8px;
   }
 }
 
@@ -2545,6 +2567,12 @@ pre code {
   }
   .table-responsive-xl > .table-bordered {
     border: 0;
+  }
+  #refLinkInfo{
+    font-size: 10px;
+  }
+  #refLinkInfo2{
+    font-size:10px;
   }
 }
 
@@ -13998,7 +14026,6 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .loader span:nth-child(1) {
-
   background-image:url(/assets/img/bud.png);
   background-size: contain;
   background-repeat: no-repeat;
@@ -14006,7 +14033,6 @@ a.text-dark:hover, a.text-dark:focus {
 
 .loader span:nth-child(2) {
   left: 88px;
-
   background-image:url(/assets/img/bud.png);
   background-size: contain;
   background-repeat: no-repeat;
@@ -15816,10 +15842,10 @@ button.bg-white:focus {
 }
 
 .hr-ornate {
-  height: 12px;
-  background-image: url("../img/divider.png");
+  height: 8px;
+  background-image: url("../img/divider.jpg");
   background-size: contain;
-  background-repeat: repeat-x;
+  background-repeat: no-repeat;
   background-position: center;
   border: 0;
 }
@@ -16734,11 +16760,11 @@ a.text-white:hover, a.text-white:focus {
 /*-----------------------------------------------
 |   Colors for social icons
 -----------------------------------------------*/
-
 .socialIcon{
-color:#fff;
-font-size:25px;
-}
+  color:#fff;
+  font-size:25px;
+  }
+
 .text-facebook {
   color: #fff;
 }
