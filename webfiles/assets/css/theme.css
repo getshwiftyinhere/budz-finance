@@ -7,18 +7,18 @@
  */
  
  #budrunAni{
-  -webkit-animation: bud-run 25s linear infinite;
-  animation: bud-run 25s linear infinite;
+  -webkit-animation: bud-run 37s linear infinite;
+  animation: bud-run 37s linear infinite;
   position: fixed;
   bottom:0px;
-  left:-250px;
+  left:-2625px;
   z-index: 9999;
  }
 
  @-webkit-keyframes bud-run {
   0% {
     transform:scaleX(1);
-    left:-750px;
+    left:-2625px;
   }
   50% {
     left:4750px;
@@ -29,7 +29,7 @@
   }
   100% {
     transform:scaleX(-1);
-    left:-750px;
+    left:-2625px;
   }
 }
  .addressBreak{

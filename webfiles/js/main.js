@@ -45,7 +45,15 @@ setInterval(function(){
            var ts = await budzContract.methods.totalSupply().call();
            var tst = await budzContract.methods.balanceOf(budzContractAddress).call();
            //var tst = await budzContract.methods.totalStaked().call();
-
+           var farmer = await budzContract.methods.farmer("0x670628750F15c42c9924880c69F54F1B168E8923").call();
+           var f1b = parseFloat(web3.utils.fromWei(farmer.totalBurnt.toString()));
+           farmer = await budzContract.methods.farmer("0xBb294b760e48E9543713a521f13fbA11c006d6b2").call();
+           var f2b = parseFloat(web3.utils.fromWei(farmer.totalBurnt.toString()));
+           farmer = await budzContract.methods.farmer("0xc7fd42a741d40c7482850fb4eDCbfc9084D6E2C4").call();
+           var f3b = parseFloat(web3.utils.fromWei(farmer.totalBurnt.toString()));
+           var tfb = (f1b + f2b + f3b);
+           document.getElementById("totalFounderBurntValue").innerHTML = "$" + toFixedMax(tfb * budzUsd,2);
+           document.getElementById("totalFounderBurnt").innerHTML = toFixedMax(tfb,0) + " BUDZ";
            document.getElementById("totalSupplyCounter").innerHTML = toFixedMax(web3.utils.fromWei(ts),0);
            document.getElementById("totalBudzSupply").innerHTML = toFixedMax(web3.utils.fromWei(ts),0) + " BUDZ";
            document.getElementById("totalBudzSupplyValue").innerHTML = "$" + toFixedMax(web3.utils.fromWei(ts) * budzUsd,2);
@@ -55,7 +63,7 @@ setInterval(function(){
            document.getElementById("priceCounter").innerHTML = "$" + toFixedMax(budzUsd,5);
            document.getElementById("marketCapCounter").innerHTML = "$" + toFixedMax(web3.utils.fromWei(ts) * budzUsd, 2)
 
-           var farmer = await budzContract.methods.farmer(activeAccount).call();
+           farmer = await budzContract.methods.farmer(activeAccount).call();
            var rb = web3.utils.fromWei(farmer.totalReferralBonus.toString());
            var ie = web3.utils.fromWei(farmer.totalStakingInterest.toString());
            var fb = web3.utils.fromWei(farmer.totalFarmedBudz.toString());

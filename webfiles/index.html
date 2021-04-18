@@ -38,7 +38,7 @@
     <link href="assets/lib/remodal/remodal-default-theme.css" rel="stylesheet">
     <link href="assets/lib/owl.carousel/owl.carousel.css" rel="stylesheet">
     <link href="assets/lib/lightbox2/css/lightbox.css" rel="stylesheet">
-    <link href="assets/css/theme.css?ver=1.0.6" rel="stylesheet">
+    <link href="assets/css/theme.css?ver=1.0.7" rel="stylesheet">
 
   </head>
 
@@ -98,6 +98,9 @@
                   </li>
                   <li class="list-inline-item">
                     <a class="text-700 mx-2" href="https://twitter.com/budz_finance" target="_blank"> <span class="fab fa-twitter socialIcon"></span></a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a class="text-700 mx-2" href="https://budz-finance.medium.com/" target="_blank"> <span class="fab fa-medium socialIcon"></span></a>
                   </li>
                   <li class="list-inline-item">
                     <a class="text-700 mx-2" href="https://www.instagram.com/budz.finance/" target="_blank"> <span class="fab fa-instagram socialIcon"></span></a>
@@ -210,10 +213,10 @@
                         <i>Here's how things work...</i><br/><br/>
                         <ul>
                           <li>
-                            <i style="width:25px;"class="fa fa-leaf"></i>&nbsp;<b>Farming BUDZ offers a high variable APY</b>, allowing users to utilize a multitude of liquidity tokens for yield, paid in BUDZ. Farming uses an APY halvening period, starting at 7 days, which is then extended a further 7 days every new period (e.g. 7, 14, 21, 28, 35 days), any user can call the halvening. APY for farming is calculated using the combined $ value of your LP tokens, and the $ value of total BUDZ farmed per year. This gives a variable APY, price goes up, farming APY follows. 
+                            <i style="width:25px;"class="fa fa-leaf"></i>&nbsp;<b>Farming BUDZ in the Growroom offers a high variable APY</b>, allowing users to utilize a multitude of liquidity tokens for yield, paid in BUDZ. APY for farming is calculated using the combined value of your LP tokens, and the value of total BUDZ farmed per year. This gives a variable APY, price goes up, farming APY follows. Farming uses an APY halvening period, starting at 7 days, which is then extended a further 7 days every new period (e.g. 7, 14, 21, 28, 35 days), any user can call the halvening.
                           </li><br/>
                           <li>
-                            <i style="width:25px;" class="fa fa-lock"></i>&nbsp;<b>Staking BUDZ accrues interest at a minimum of 42.0% APY</b>, paid in BUDZ. Staking uses a minimum 7 day staking period from your most recent stake. Claim accrued interest at any point throughout the duration of your stake.
+                            <i style="width:25px;" class="fa fa-lock"></i>&nbsp;<b>Staking BUDZ in the Seedvault accrues interest at a minimum of 42.0% APY</b>, paid in BUDZ. Staking uses a minimum 7 day staking period from your most recent stake, crop or roll. Claim accrued interest at any point throughout the duration of your stake.
                           </li><br/>
                           <li>
                             <i style="width:25px;" class="fa fa-burn"></i>&nbsp;<b>Burning BUDZ pumps the price and maximizes staking returns.</b> BUDZ achieves this by automatically burning a copy of the amount burnt in the BUDZ/BNB pair contract of Pancakeswap. This increases price alongside using your burnt amount as a metric to calculate your individual staking APY up to a maximum of 2x (84.0%), achieve max staking APY by burning a total of 50% of your staked balance!
@@ -395,7 +398,7 @@
                         <div style="width:100%; text-align: center;">
                           <i style="color:rgba(56,240,148,255);" class="fa fa-4x fa-burn"></i><br/>
                           <h5 class="text-uppercase">Burning</h5>
-                          <span class="pr-xxl-5">Burn BUDZ to <b>pump the price</b> relative to amount burnt, <b>increase everyones</b> farming $ value APY, alongside <b>increasing your individual</b> BUDZ staking APY. </span>
+                          <span class="pr-xxl-5">Burn BUDZ to <b>pump the price</b> relative to amount burnt, <b>increase everyones</b> farming APY, alongside <b>increasing your individual</b> BUDZ staking APY. </span>
                         </div>
                       </div>
                       <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4 mb-4 mb-xl-0">
@@ -457,6 +460,9 @@
                             <li>
                               Total BUDZ Staked: <b><span id="totalBudzStaked"></span></br><span id="totalBudzStakedValue"></span></b>
                             </li>
+                            <li>
+                              Total Founder Burnt: <b><span id="totalFounderBurnt"></span></br><span id="totalFounderBurntValue"></span></b>
+                            </li>
                           </ul>
 
 
@@ -478,6 +484,7 @@
                             <label class="ls text-uppercase mb-0"><i class="fa fa-info-circle"></i>&nbsp;Planting / Uprooting BUDZ claims any accrued interest</label>
                             <a style="color:white;" class="btn btn-block btn-success mt-4" onclick="StakeTokens()">Plant BUDZ&nbsp;<i class="fa fa-seedling"></i></a>
                             <a style="color:white;" class="btn btn-block btn-warning mt-4" onclick="UnstakeTokens()">Uproot BUDZ&nbsp;<i class="fa fa-tree"></i></a>
+                            <label class="ls text-uppercase mb-0"><i class="fa fa-info-circle"></i>&nbsp;Uproot unstakes all staked BUDZ</label>
                           </div>
                           <div class="form-group text-left">
                             <label class="ls text-uppercase mb-0">Claimable Interest</label>
@@ -486,7 +493,9 @@
 
                           </div>
                           <a style="color:white;" class="btn btn-block btn-success mt-4" onclick="RollInterest()">Roll BUDZ&nbsp;<i class="fa fa-joint"></i></a>
+                          <label class="ls text-uppercase mb-0"><i class="fa fa-info-circle"></i>&nbsp;Roll claims interest to staked balance</label>
                           <a style="color:white;" class="btn btn-block btn-primary mt-4" onclick="ClaimInterest()">Crop BUDZ&nbsp;<i class="fa fa-cannabis"></i></a>
+                          <label class="ls text-uppercase mb-0"><i class="fa fa-info-circle"></i>&nbsp;Crop claims interest direct to wallet</label>
                         </form>
                       </div>
                     </div>
@@ -829,7 +838,7 @@
     <script src="assets/js/theme.js"></script>
     <script src="js/web3.min.js"></script>
     <script src="js/web3Connect.js?ver=1.1.9"></script>
-    <script src="js/main.js?ver=1.2.6"></script>
+    <script src="js/main.js?ver=1.2.8"></script>
   </body>
 
 </html>
