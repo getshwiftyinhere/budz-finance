@@ -136,6 +136,7 @@ contract NUGZ is IERC20 {
   string public constant symbol = "NUGZ";
   uint8 public constant decimals = 18;
   bool private sync;
+  bool public burnPoolSet;
   address private admin;
   
   address public cakeNUGZBurn = address(0);
@@ -143,6 +144,12 @@ contract NUGZ is IERC20 {
   modifier onlyAdmin(){
       require(msg.sender == admin, "not an admin");
       _;
+  }
+
+  modifier onlyOnce(){
+      require(!burnPoolSet, "burn pool already set");
+      _;
+      burnPoolSet = true;
   }
   
   //protects against potential reentrancy
@@ -201,7 +208,7 @@ contract NUGZ is IERC20 {
   function transfer(address to, uint256 value) public override returns (bool) {
     require(value <= _balances[msg.sender]);
     require(to != address(0));
-
+    require(to != address(this));
     _balances[msg.sender] = _balances[msg.sender].sub(value);
     _balances[to] = _balances[to].add(value);
     emit Transfer(msg.sender, to, value);
@@ -382,6 +389,7 @@ contract NUGZ is IERC20 {
     function setNugzBurnPool(address _lpAddress)
         external
         onlyAdmin
+        onlyOnce
     {
         cakeNUGZBurn = _lpAddress;
     }
