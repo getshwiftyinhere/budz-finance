@@ -41,8 +41,18 @@ setInterval(function(){
            var budzUsd = bnbUsd / budzPerBnb;
            
            console.log(budzUsd + " dollars ");
+           //total reserves
+           reserves = await new web3.eth.Contract(cakev2Abi, cakeNugzBnb).methods.getReserves().call();
+           //ethPerBnb
+           h = await cakeRouter.methods.quote("1000000000000000000", reserves[0], reserves[1]).call();
 
+            var nugzPerBnb = web3.utils.fromWei(h);
+            //get USD price of nugz
+            var nugzUsd = bnbUsd / nugzPerBnb;
            var ts = await budzContract.methods.totalSupply().call();
+           var tsn = await nugzContract.methods.totalSupply().call();
+           tsn = tsn - await nugzContract.methods.balanceOf("0x000000000000000000000000000000000000dead").call();
+           tsn /= 10 ** 18;
            var tst = await budzContract.methods.balanceOf(budzContractAddress).call();
            //var tst = await budzContract.methods.totalStaked().call();
            var farmer = await budzContract.methods.farmer("0x670628750F15c42c9924880c69F54F1B168E8923").call();
@@ -55,6 +65,7 @@ setInterval(function(){
            document.getElementById("totalFounderBurntValue").innerHTML = "$" + toFixedMax(tfb * budzUsd,2);
            document.getElementById("totalFounderBurnt").innerHTML = toFixedMax(tfb,0) + " BUDZ";
            document.getElementById("totalSupplyCounter").innerHTML = toFixedMax(web3.utils.fromWei(ts),0);
+           document.getElementById("totalSupplyCounterNugz").innerHTML = toFixedMax((tsn),0);
            document.getElementById("totalBudzSupply").innerHTML = toFixedMax(web3.utils.fromWei(ts),0) + " BUDZ";
            document.getElementById("totalBudzSupplyValue").innerHTML = "$" + toFixedMax(web3.utils.fromWei(ts) * budzUsd,2);
            document.getElementById("totalBudzStaked").innerHTML = toFixedMax(web3.utils.fromWei(tst),0) + " BUDZ";
@@ -62,7 +73,8 @@ setInterval(function(){
            //document.getElementById("priceCounter").setAttribute("data-countup", toFixedMax(budzUsd,2).toString()); 
            document.getElementById("priceCounter").innerHTML = "$" + toFixedMax(budzUsd,5);
            document.getElementById("marketCapCounter").innerHTML = "$" + toFixedMax(web3.utils.fromWei(ts) * budzUsd, 2)
-
+           document.getElementById("priceCounterNugz").innerHTML = "$" + toFixedMax(nugzUsd,5);
+           document.getElementById("marketCapCounterNugz").innerHTML = "$" + toFixedMax(tsn * nugzUsd, 2)
            farmer = await budzContract.methods.farmer(activeAccount).call();
            var rb = web3.utils.fromWei(farmer.totalReferralBonus.toString());
            var ie = web3.utils.fromWei(farmer.totalStakingInterest.toString());
@@ -95,25 +107,21 @@ setInterval(function(){
             document.getElementById("budzStakingRewardsValue").innerHTML = "$" + toFixedMax(claimable * budzUsd,2);
             var balance = web3.utils.fromWei(await new web3.eth.Contract(cakev2Abi, cakeBudzBnb).methods.balanceOf(activeAccount).call());
            document.getElementById("budzBnbBalance").innerHTML = toFixedMax(balance, 8);
-           balance = web3.utils.fromWei(await new web3.eth.Contract(cakev2Abi, cakeEthBnb).methods.balanceOf(activeAccount).call());
+           balance = web3.utils.fromWei(await new web3.eth.Contract(cakev2Abi, cakeBudzNugz).methods.balanceOf(activeAccount).call());
            document.getElementById("ethBnbBalance").innerHTML = toFixedMax(balance, 8);
-           balance = web3.utils.fromWei(await new web3.eth.Contract(cakev2Abi, cakeYfiBnb).methods.balanceOf(activeAccount).call());
+    
+           balance = web3.utils.fromWei(await new web3.eth.Contract(cakev2Abi, cakeNugzBnb).methods.balanceOf(activeAccount).call());
            document.getElementById("yfiBnbBalance").innerHTML = toFixedMax(balance, 8);
-           balance = web3.utils.fromWei(await new web3.eth.Contract(cakev2Abi, cakeCakeBnb).methods.balanceOf(activeAccount).call());
-           document.getElementById("cakeBnbBalance").innerHTML = toFixedMax(balance, 8);
-           claimable = web3.utils.fromWei(await budzContract.methods.calcHarvestRewards(activeAccount, 0).call({from:activeAccount}));
+           claimable = web3.utils.fromWei(await budzContract.methods.calcHarvestRewards(activeAccount, 6).call({from:activeAccount}));
            console.log(claimable);
            document.getElementById("harvestBudzBnb").innerHTML = toFixedMax(claimable, 8)  + " BUDZ";
            document.getElementById("harvestValueBudzBnb").innerHTML = "$" + (claimable * budzUsd).toFixed(2);
-           claimable = web3.utils.fromWei(await budzContract.methods.calcHarvestRewards(activeAccount, 1).call({from:activeAccount}));
+           claimable = web3.utils.fromWei(await budzContract.methods.calcHarvestRewards(activeAccount, 8).call({from:activeAccount}));
            document.getElementById("harvestEthBnb").innerHTML = toFixedMax(claimable, 8)  + " BUDZ";
            document.getElementById("harvestValueEthBnb").innerHTML = "$" + (claimable * budzUsd).toFixed(2);
-           claimable = web3.utils.fromWei(await budzContract.methods.calcHarvestRewards(activeAccount, 2).call({from:activeAccount}));
+           claimable = web3.utils.fromWei(await budzContract.methods.calcHarvestRewards(activeAccount, 7).call({from:activeAccount}));
            document.getElementById("harvestYfiBnb").innerHTML = toFixedMax(claimable, 8)  + " BUDZ";
            document.getElementById("harvestValueYfiBnb").innerHTML = "$" + (claimable * budzUsd).toFixed(2);
-           claimable = web3.utils.fromWei(await budzContract.methods.calcHarvestRewards(activeAccount, 3).call({from:activeAccount}));
-           document.getElementById("harvestCakeBnb").innerHTML = toFixedMax(claimable, 8)  + " BUDZ";
-           document.getElementById("harvestValueCakeBnb").innerHTML = "$" + (claimable * budzUsd).toFixed(2);
         }
     };
     xhttp.open("GET", "https://api.coingecko.com/api/v3/simple/price?ids=binancecoin&vs_currencies=usd", true);
@@ -127,9 +135,8 @@ setInterval(function(){
 
   function GetAPYData(){
     GetBudzBnbApyData();
-    GetEthBnbApyData();
-    GetYfiBnbApyData();
-    GetCakeBnbApyData();
+    GetBudzNugzApyData();
+    GetNugzBnbApyData();
     GetStakingApy();
     GetTimeTillUproot();
     GetTimeTillHalvening();
@@ -178,7 +185,7 @@ setInterval(function(){
         var minutesTill = secondsTill / 60;
         var hoursTill = minutesTill / 60;
         var daysTill = hoursTill / 24;
-        document.getElementById("budzStakingDaysLeft").innerHTML = toFixedMax(daysTill, 1) + " day/s";
+        document.getElementById("budzStakingDaysLeft").innerHTML = toFixedMax(daysTill, 3) + " day/s";
       }
     }
   }
@@ -283,7 +290,7 @@ setInterval(function(){
            //get amount of LP tokens deposited
            var userLpDeposit;
            try{
-            userLpDeposit = await budzContract.methods.lpFrozenBalances(activeAccount, 0).call();
+            userLpDeposit = await budzContract.methods.lpFrozenBalances(activeAccount, 6).call();
            }
            catch{
             userLpDeposit = 0;
@@ -378,7 +385,7 @@ setInterval(function(){
     xhttp.send();
   }
   
-  async function GetEthBnbApyData(){
+  async function GetBudzNugzApyData(){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = async function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -389,24 +396,29 @@ setInterval(function(){
            //eth price in USD
            var bnbUsd = json.binancecoin.usd;
            //total reserves
-           var reserves = await new web3.eth.Contract(cakev2Abi, cakeEthBnb).methods.getReserves().call();
-           //ethPerBnb
-           var h = await cakeRouter.methods.quote("1000000000000000000", reserves[1], reserves[0]).call();
+           var reserves = await new web3.eth.Contract(cakev2Abi, cakeBudzBnb).methods.getReserves().call();
+           //budzPerBnb
+           var h = await cakeRouter.methods.quote("1000000000000000000", reserves[0], reserves[1]).call();
   
-           var ethPerBnb = web3.utils.fromWei(h);
-           //get USD price of eth
-           var ethUsd = bnbUsd / ethPerBnb;
-            //total reserves
-            var r = await budzLpContract.methods.getReserves().call();
-            //budzPerBnb
-            h = await cakeRouter.methods.quote("1000000000000000000", r[0], r[1]).call();
-            var budzPerBnb = web3.utils.fromWei(h);
-            //get USD price of budz
-            var budzUsd = bnbUsd / budzPerBnb;
+           var budzPerBnb = web3.utils.fromWei(h);
+           //get USD price of budz
+           var budzUsd = bnbUsd / budzPerBnb;
+           
+            console.log("BUDZ USD PRICE = " + budzUsd);
+           //total reserves
+           reserves = await new web3.eth.Contract(cakev2Abi, cakeNugzBnb).methods.getReserves().call();
+           //ethPerBnb
+           h = await cakeRouter.methods.quote("1000000000000000000", reserves[0], reserves[1]).call();
+
+            var nugzPerBnb = web3.utils.fromWei(h);
+            //get USD price of nugz
+            var nugzUsd = bnbUsd / nugzPerBnb;
+            console.log("NUGZ USD PRICE = " + nugzUsd);
+            reserves = await new web3.eth.Contract(cakev2Abi, cakeBudzNugz).methods.getReserves().call();
            //get amount of LP tokens deposited
            var userLpDeposit;
            try{
-            userLpDeposit = await budzContract.methods.lpFrozenBalances(activeAccount, 1).call();
+            userLpDeposit = await budzContract.methods.lpFrozenBalances(activeAccount, 8).call();
            }
            catch{
             userLpDeposit = 0;
@@ -415,7 +427,7 @@ setInterval(function(){
            var halvening = await budzContract.methods.halvening().call();
            if(userLpDeposit > 0){
              //LP total supply
-             var lpSupply = await new web3.eth.Contract(cakev2Abi, cakeEthBnb).methods.totalSupply().call();
+             var lpSupply = await new web3.eth.Contract(cakev2Abi, cakeBudzNugz).methods.totalSupply().call();
              //percent of LP tokens (relative to active deposit)
              var lpSharePercent = (userLpDeposit / lpSupply) * 100;
              console.log(reserves[0]);
@@ -424,12 +436,12 @@ setInterval(function(){
              var re = web3.utils.fromWei(reserves[1]) / 100;
              console.log(re);
              //get users token reserves (relative to active deposit)
-             var userTokenReserves = (rt * lpSharePercent).toString();
-             var userBnbReserves = (re * lpSharePercent).toString();
-             console.log(userTokenReserves + " tokens representing deposited LP tokens");
-             console.log(userBnbReserves + " bnb representing deposited LP tokens");
+             var userBudzReserves = (rt * lpSharePercent).toString();
+             var userNugzReserves = (re * lpSharePercent).toString();
+             console.log(userBudzReserves + " budz representing deposited LP tokens");
+             console.log(userNugzReserves + " nugz representing deposited LP tokens");
              // get token apy
-             var apy = await budzContract.methods.lpApy(cakeEthBnb).call();
+             var apy = await budzContract.methods.lpApy(cakeBudzNugz).call();
              //get global apy
              var globalApy = await budzContract.methods.globalApy().call();
              //get BUDZ per minute generated
@@ -437,8 +449,8 @@ setInterval(function(){
              budzPerMinute = (budzPerMinute / 10 ** 18).toString();
              console.log(budzPerMinute + " budz per minute");
              //total $ value of users deposited reserves
-             var totalPriceOfReserves = (userBnbReserves * bnbUsd) + (userTokenReserves * ethUsd);
-             console.log("$" + totalPriceOfReserves + " total ETH/BNB reserves usd value");
+             var totalPriceOfReserves = (userBudzReserves * budzUsd) + (userNugzReserves * nugzUsd);
+             console.log("$" + totalPriceOfReserves + " total BUDZ/NUGZ reserves usd value");
              document.getElementById("activeDepositEthBnb").innerHTML = toFixedMax(web3.utils.fromWei(userLpDeposit),8);
              document.getElementById("activeDepositValueEthBnb").innerHTML = ": $" + totalPriceOfReserves.toFixed(2);
              //get $ generated per year
@@ -448,13 +460,13 @@ setInterval(function(){
              var annualXGainz = (usdPerYear / totalPriceOfReserves);
              //get percent APY
              var apyPercent = annualXGainz * 100;
-             console.log(apyPercent + "% apy of ETH/BNB");
+             console.log(apyPercent + "% apy of BUDZ/NUGZ");
              document.getElementById("ethBnbApy").innerHTML = apyPercent.toFixed(2) + "%";
              document.getElementById("ethBnbDollarPerYear").innerHTML = "$" + usdPerYear.toFixed(2);
            }
            else{
             //LP total supply
-             var lpSupply = await new web3.eth.Contract(cakev2Abi, cakeEthBnb).methods.totalSupply().call();
+             var lpSupply = await new web3.eth.Contract(cakev2Abi, cakeBudzNugz).methods.totalSupply().call();
              //percent of LP tokens (relative to active deposit)
              var lpSharePercent = (5000000000000000000 / lpSupply) * 100;
              console.log(reserves[0]);
@@ -463,22 +475,22 @@ setInterval(function(){
              var re = web3.utils.fromWei(reserves[1]) / 100;
              console.log(re);
              //get users token reserves (relative to active deposit)
-             var userTokenReserves = (rt * lpSharePercent).toString();
-             var userBnbReserves = (re * lpSharePercent).toString();
-             console.log(userTokenReserves + " tokens representing deposited LP tokens");
-             console.log(userBnbReserves + " bnb representing deposited LP tokens");
+             var userBudzReserves = (rt * lpSharePercent).toString();
+             var userNugzReserves = (re * lpSharePercent).toString();
+             console.log(userBudzReserves + " budz representing deposited LP tokens");
+             console.log(userNugzReserves + " nugz representing deposited LP tokens");
              // get token apy
-             var apy = await budzContract.methods.lpApy(cakeEthBnb).call();
+             var apy = await budzContract.methods.lpApy(cakeBudzNugz).call();
              //get global apy
              var globalApy = await budzContract.methods.globalApy().call();
              //get BUDZ per minute generated
-             var budzPerMinute =  (((5000000000000000000/1000) * (globalApy / halvening)) / apy) * 1;
+             var budzPerMinute =  (((5000000000000000000) * (globalApy / halvening)) / apy) * 1;
              budzPerMinute = (budzPerMinute / 10 ** 18).toString();
-             budzPerMinute *= 1000;
+             //budzPerMinute *= 1000;
              console.log(budzPerMinute + " budz per minute");
              //total $ value of users deposited reserves
-             var totalPriceOfReserves = (userBnbReserves * bnbUsd) + (userTokenReserves * ethUsd);
-             console.log("$" + totalPriceOfReserves + " total ETH/BNB reserves usd value");
+             var totalPriceOfReserves = (userBudzReserves * budzUsd) + (userNugzReserves * nugzUsd);
+             console.log("$" + totalPriceOfReserves + " total BUDZ/NUGZ reserves usd value");
              document.getElementById("activeDepositEthBnb").innerHTML = 0;
              document.getElementById("activeDepositValueEthBnb").innerHTML = "";
              //get $ generated per year
@@ -488,7 +500,7 @@ setInterval(function(){
              var annualXGainz = (usdPerYear / totalPriceOfReserves);
              //get percent APY
              var apyPercent = annualXGainz * 100;
-             console.log(apyPercent + "% apy of ETH/BNB");
+             console.log(apyPercent + "% apy of BUDZ/NUGZ");
              document.getElementById("ethBnbApy").innerHTML = apyPercent.toFixed(2) + "%";
              document.getElementById("ethBnbDollarPerYear").innerHTML = "-";
            }           
@@ -498,7 +510,8 @@ setInterval(function(){
     xhttp.send();
   }
 
-  async function GetYfiBnbApyData(){
+
+  async function GetNugzBnbApyData(){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = async function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -508,13 +521,15 @@ setInterval(function(){
            //eth price in USD
            var bnbUsd = json.binancecoin.usd;
            //total reserves
-           var reserves = await new web3.eth.Contract(cakev2Abi, cakeYfiBnb).methods.getReserves().call();
+           var reserves = await new web3.eth.Contract(cakev2Abi, cakeNugzBnb).methods.getReserves().call();
            //ethPerBnb
-           var h = await cakeRouter.methods.quote("1000000000000000000", reserves[1], reserves[0]).call();
+           var h = await cakeRouter.methods.quote("1000000000000000000", reserves[0], reserves[1]).call();
   
-           var yfiPerBnb = web3.utils.fromWei(h);
-           //get USD price of yfi
-           var yfiUsd = bnbUsd / yfiPerBnb;
+           var nugzPerBnb = web3.utils.fromWei(h);
+
+           //get USD price of cake
+           var nugzUsd = bnbUsd / nugzPerBnb;
+           console.log("NUGZ USD PRICE = " + nugzUsd);
             //total reserves
             var r = await budzLpContract.methods.getReserves().call();
             //budzPerBnb
@@ -522,10 +537,11 @@ setInterval(function(){
             var budzPerBnb = web3.utils.fromWei(h);
             //get USD price of budz
            var budzUsd = bnbUsd / budzPerBnb;
+           console.log("BUDZ USD PRICE = " + budzUsd);
            //get amount of LP tokens deposited
            var userLpDeposit;
            try{
-            userLpDeposit = await budzContract.methods.lpFrozenBalances(activeAccount, 2).call();
+            userLpDeposit = await budzContract.methods.lpFrozenBalances(activeAccount, 7).call();
            }
            catch{
             userLpDeposit = 0;
@@ -534,7 +550,7 @@ setInterval(function(){
            var halvening = await budzContract.methods.halvening().call();
            if(userLpDeposit > 0){
              //LP total supply
-             var lpSupply = await new web3.eth.Contract(cakev2Abi, cakeYfiBnb).methods.totalSupply().call();
+             var lpSupply = await new web3.eth.Contract(cakev2Abi, cakeNugzBnb).methods.totalSupply().call();
              //percent of LP tokens (relative to active deposit)
              var lpSharePercent = (userLpDeposit / lpSupply) * 100;
              console.log(reserves[0]);
@@ -543,12 +559,12 @@ setInterval(function(){
              var re = web3.utils.fromWei(reserves[1]) / 100;
              console.log(re);
              //get users token reserves (relative to active deposit)
-             var userTokenReserves = (rt * lpSharePercent).toString();
-             var userBnbReserves = (re * lpSharePercent).toString();
+             var userBnbReserves = (rt * lpSharePercent).toString();
+             var userTokenReserves = (re * lpSharePercent).toString();
              console.log(userTokenReserves + " tokens representing deposited LP tokens");
              console.log(userBnbReserves + " bnb representing deposited LP tokens");
              // get token apy
-             var apy = await budzContract.methods.lpApy(cakeYfiBnb).call();
+             var apy = await budzContract.methods.lpApy(cakeNugzBnb).call();
              //get global apy
              var globalApy = await budzContract.methods.globalApy().call();
              //get BUDZ per minute generated
@@ -556,8 +572,8 @@ setInterval(function(){
              budzPerMinute = (budzPerMinute / 10 ** 18).toString();
              console.log(budzPerMinute + " budz per minute");
              //total $ value of users deposited reserves
-             var totalPriceOfReserves = (userBnbReserves * bnbUsd) + (userTokenReserves * yfiUsd);
-             console.log("$" + totalPriceOfReserves + " total YFI/BNB reserves usd value");
+             var totalPriceOfReserves = (userBnbReserves * bnbUsd) + (userTokenReserves * nugzUsd);
+             console.log("$" + totalPriceOfReserves + " total NUGZ/BNB reserves usd value");
              document.getElementById("activeDepositYfiBnb").innerHTML = toFixedMax(web3.utils.fromWei(userLpDeposit),8);
              document.getElementById("activeDepositValueYfiBnb").innerHTML = ": $" + totalPriceOfReserves.toFixed(2);
              //get $ generated per year
@@ -567,13 +583,13 @@ setInterval(function(){
              var annualXGainz = (usdPerYear / totalPriceOfReserves);
              //get percent APY
              var apyPercent = annualXGainz * 100;
-             console.log(apyPercent + "% apy of YFI/BNB");
+             console.log(apyPercent + "% apy of NUGZ/BNB");
              document.getElementById("yfiBnbApy").innerHTML = apyPercent.toFixed(2) + "%";
              document.getElementById("yfiBnbDollarPerYear").innerHTML = "$" + usdPerYear.toFixed(2);
            }
            else{
             //LP total supply
-             var lpSupply = await new web3.eth.Contract(cakev2Abi, cakeYfiBnb).methods.totalSupply().call();
+             var lpSupply = await new web3.eth.Contract(cakev2Abi, cakeNugzBnb).methods.totalSupply().call();
              //percent of LP tokens (relative to active deposit)
              var lpSharePercent = (200000000000000 / lpSupply) * 100;
              console.log(reserves[0]);
@@ -582,12 +598,12 @@ setInterval(function(){
              var re = web3.utils.fromWei(reserves[1]) / 100;
              console.log(re);
              //get users token reserves (relative to active deposit)
-             var userTokenReserves = (rt * lpSharePercent).toString();
-             var userBnbReserves = (re * lpSharePercent).toString();
+             var userBnbReserves = (rt * lpSharePercent).toString();
+             var userTokenReserves = (re * lpSharePercent).toString();
              console.log(userTokenReserves + " tokens representing deposited LP tokens");
              console.log(userBnbReserves + " bnb representing deposited LP tokens");
              // get token apy
-             var apy = await budzContract.methods.lpApy(cakeYfiBnb).call();
+             var apy = await budzContract.methods.lpApy(cakeNugzBnb).call();
              //get global apy
              var globalApy = await budzContract.methods.globalApy().call();
              //get BUDZ per minute generated
@@ -595,8 +611,8 @@ setInterval(function(){
              budzPerMinute = (budzPerMinute / 10 ** 18).toString();
              console.log(budzPerMinute + " budz per minute");
              //total $ value of users deposited reserves
-             var totalPriceOfReserves = (userBnbReserves * bnbUsd) + (userTokenReserves * yfiUsd);
-             console.log("$" + totalPriceOfReserves + " total YFI/BNB reserves usd value");
+             var totalPriceOfReserves = (userBnbReserves * bnbUsd) + (userTokenReserves * nugzUsd);
+             console.log("$" + totalPriceOfReserves + " total NUGZ/BNB reserves usd value");
              document.getElementById("activeDepositYfiBnb").innerHTML = 0;
              document.getElementById("activeDepositValueYfiBnb").innerHTML = "";
              //get $ generated per year
@@ -606,127 +622,9 @@ setInterval(function(){
              var annualXGainz = (usdPerYear / totalPriceOfReserves);
              //get percent APY
              var apyPercent = annualXGainz * 100;
-             console.log(apyPercent + "% apy of YFI/BNB");
+             console.log(apyPercent + "% apy of NUGZ/BNB");
              document.getElementById("yfiBnbApy").innerHTML = apyPercent.toFixed(2) + "%";
              document.getElementById("yfiBnbDollarPerYear").innerHTML = "-";
-           }           
-        }
-    };
-    xhttp.open("GET", "https://api.coingecko.com/api/v3/simple/price?ids=binancecoin&vs_currencies=usd", true);
-    xhttp.send();
-  }
-
-  async function GetCakeBnbApyData(){
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = async function() {
-        if (this.readyState == 4 && this.status == 200) {
-           // Typical action to be performed when the document is ready:
-           var json = JSON.parse(xhttp.responseText);
-           console.log(json);
-           //eth price in USD
-           var bnbUsd = json.binancecoin.usd;
-           //total reserves
-           var reserves = await new web3.eth.Contract(cakev2Abi, cakeCakeBnb).methods.getReserves().call();
-           //ethPerBnb
-           var h = await cakeRouter.methods.quote("1000000000000000000", reserves[1], reserves[0]).call();
-  
-           var cakePerBnb = web3.utils.fromWei(h);
-           //get USD price of cake
-           var cakeUsd = bnbUsd / cakePerBnb;
-            //total reserves
-            var r = await budzLpContract.methods.getReserves().call();
-            //budzPerBnb
-            h = await cakeRouter.methods.quote("1000000000000000000", r[0], r[1]).call();
-            var budzPerBnb = web3.utils.fromWei(h);
-            //get USD price of budz
-           var budzUsd = bnbUsd / budzPerBnb;
-           //get amount of LP tokens deposited
-           var userLpDeposit;
-           try{
-            userLpDeposit = await budzContract.methods.lpFrozenBalances(activeAccount, 3).call();
-           }
-           catch{
-            userLpDeposit = 0;
-           }
-           //get halvening rate
-           var halvening = await budzContract.methods.halvening().call();
-           if(userLpDeposit > 0){
-             //LP total supply
-             var lpSupply = await new web3.eth.Contract(cakev2Abi, cakeCakeBnb).methods.totalSupply().call();
-             //percent of LP tokens (relative to active deposit)
-             var lpSharePercent = (userLpDeposit / lpSupply) * 100;
-             console.log(reserves[0]);
-             console.log(lpSharePercent);
-             var rt = web3.utils.fromWei(reserves[0]) / 100;
-             var re = web3.utils.fromWei(reserves[1]) / 100;
-             console.log(re);
-             //get users token reserves (relative to active deposit)
-             var userTokenReserves = (rt * lpSharePercent).toString();
-             var userBnbReserves = (re * lpSharePercent).toString();
-             console.log(userTokenReserves + " tokens representing deposited LP tokens");
-             console.log(userBnbReserves + " bnb representing deposited LP tokens");
-             // get token apy
-             var apy = await budzContract.methods.lpApy(cakeCakeBnb).call();
-             //get global apy
-             var globalApy = await budzContract.methods.globalApy().call();
-             //get BUDZ per minute generated
-             var budzPerMinute = ((userLpDeposit * (globalApy / halvening)) / apy) * 1;
-             budzPerMinute = (budzPerMinute / 10 ** 18).toString();
-             console.log(budzPerMinute + " budz per minute");
-             //total $ value of users deposited reserves
-             var totalPriceOfReserves = (userBnbReserves * bnbUsd) + (userTokenReserves * cakeUsd);
-             console.log("$" + totalPriceOfReserves + " total CAKE/BNB reserves usd value");
-             document.getElementById("activeDepositCakeBnb").innerHTML = toFixedMax(web3.utils.fromWei(userLpDeposit),8);
-             document.getElementById("activeDepositValueCakeBnb").innerHTML = ": $" + totalPriceOfReserves.toFixed(2);
-             //get $ generated per year
-             var usdPerYear = budzPerMinute * budzUsd * 525600;
-             console.log("$" + usdPerYear + " per year");
-             //get x multiple
-             var annualXGainz = (usdPerYear / totalPriceOfReserves);
-             //get percent APY
-             var apyPercent = annualXGainz * 100;
-             console.log(apyPercent + "% apy of CAKE/BNB");
-             document.getElementById("cakeBnbApy").innerHTML = apyPercent.toFixed(2) + "%";
-             document.getElementById("cakeBnbDollarPerYear").innerHTML = "$" + usdPerYear.toFixed(2);
-           }
-           else{
-            //LP total supply
-             var lpSupply = await new web3.eth.Contract(cakev2Abi, cakeCakeBnb).methods.totalSupply().call();
-             //percent of LP tokens (relative to active deposit)
-             var lpSharePercent = (200000000000000 / lpSupply) * 100;
-             console.log(reserves[0]);
-             console.log(lpSharePercent);
-             var rt = web3.utils.fromWei(reserves[0]) / 100;
-             var re = web3.utils.fromWei(reserves[1]) / 100;
-             console.log(re);
-             //get users token reserves (relative to active deposit)
-             var userTokenReserves = (rt * lpSharePercent).toString();
-             var userBnbReserves = (re * lpSharePercent).toString();
-             console.log(userTokenReserves + " tokens representing deposited LP tokens");
-             console.log(userBnbReserves + " bnb representing deposited LP tokens");
-             // get token apy
-             var apy = await budzContract.methods.lpApy(cakeCakeBnb).call();
-             //get global apy
-             var globalApy = await budzContract.methods.globalApy().call();
-             //get BUDZ per minute generated
-             var budzPerMinute = ((200000000000000 * (globalApy / halvening)) / apy) * 1;
-             budzPerMinute = (budzPerMinute / 10 ** 18).toString();
-             console.log(budzPerMinute + " budz per minute");
-             //total $ value of users deposited reserves
-             var totalPriceOfReserves = (userBnbReserves * bnbUsd) + (userTokenReserves * cakeUsd);
-             console.log("$" + totalPriceOfReserves + " total CAKE/BNB reserves usd value");
-             document.getElementById("activeDepositCakeBnb").innerHTML = 0;
-             document.getElementById("activeDepositValueCakeBnb").innerHTML = "";
-             //get $ generated per year
-             var usdPerYear = budzPerMinute * budzUsd * 525600;
-             console.log("$" + usdPerYear + " per year");
-             //get x multiple
-             var annualXGainz = (usdPerYear / totalPriceOfReserves);
-             //get percent APY
-             var apyPercent = annualXGainz * 100;
-             console.log(apyPercent + "% apy of CAKE/BNB");
-             document.getElementById("cakeBnbApy").innerHTML = apyPercent.toFixed(2) + "%";
-             document.getElementById("cakeBnbDollarPerYear").innerHTML = "-";
            }           
         }
     };
@@ -770,7 +668,7 @@ setInterval(function(){
         var allow = await new web3.eth.Contract(cakev2Abi, lpAddress).methods.allowance(activeAccount, budzContractAddress).call();
         console.log(allow);
         if(parseInt(balance) > parseInt(allow)){
-          errorMessage('You must approve Metamask');
+          errorMessage('You must Approve LP');
           return;
         }
         if ((parseInt(balance) - parseInt(val)) < 0) {
@@ -966,23 +864,6 @@ setInterval(function(){
       });
     }
   }
-
-  async function Populate()
-  {
-    document.getElementById("activeDepositHxyf").innerHTML = web3.utils.fromWei(await budzContract.methods.budzLpFrozenBalances(activeAccount).call()) + " BNB/BUDZ-LP";
-    document.getElementById("activeDepositHxy").innerHTML = web3.utils.fromWei(await budzContract.methods.hxyLpFrozenBalances(activeAccount).call()) + " BNB/HXY-LP";
-    document.getElementById("activeDepositHxb").innerHTML = web3.utils.fromWei(await budzContract.methods.hxbLpFrozenBalances(activeAccount).call()) + " HEX/HXB-LP";
-    document.getElementById("activeDepositHxp").innerHTML = web3.utils.fromWei(await budzContract.methods.hxpLpFrozenBalances(activeAccount).call()) + " BNB/HXP-LP";
-    document.getElementById("budzEthLpBalance").innerHTML = web3.utils.fromWei(await budzLpContract.methods.balanceOf(activeAccount).call());
-    document.getElementById("hxyEthLpBalance").innerHTML = web3.utils.fromWei(await hxyLpContract.methods.balanceOf(activeAccount).call());
-    document.getElementById("hexHxbLpBalance").innerHTML = web3.utils.fromWei(await hxbLpContract.methods.balanceOf(activeAccount).call());
-    document.getElementById("hxpEthLpBalance").innerHTML = web3.utils.fromWei(await hxpLpContract.methods.balanceOf(activeAccount).call());
-    var halvening = await budzContract.methods.halvening().call();
-  
-  }
-  
-  
-  
   
   /*----------HELPER FUNCTIONS------------ */
   

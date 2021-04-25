@@ -38,7 +38,7 @@
     <link href="assets/lib/remodal/remodal-default-theme.css" rel="stylesheet">
     <link href="assets/lib/owl.carousel/owl.carousel.css" rel="stylesheet">
     <link href="assets/lib/lightbox2/css/lightbox.css" rel="stylesheet">
-    <link href="assets/css/theme.css?ver=1.0.7" rel="stylesheet">
+    <link href="assets/css/theme.css?ver=1.0.9" rel="stylesheet">
 
   </head>
 
@@ -92,6 +92,8 @@
                 <a href="index.html">
                   <img class="mb-5 img-fluid" src="assets/img/budz-logo.png" alt="">
                 </a>
+                <!--<h6>BUDZ IS UNDERGOING MIGRATION TO PANCAKESWAP V2</h6>
+                <span style="font-size: 12px;"><i class="fa fa-info-circle"></i>Users are still able farm/stake, buy/sell and remove LP. Pancakeswap V1 has disabled liquidity addition, therefore we will be updating farms to pancakeswap V2 LP. We thank you for your patience.</span>-->
                 <ul class="list-inline">
                   <li class="list-inline-item">
                     <a class="text-700 mx-2" href="https://t.me/budzfinance" target="_blank"> <span class="fab fa-telegram socialIcon"></span></a>
@@ -257,6 +259,28 @@
                     </div>
                   </div>
                 </div>
+                <hr class="hr-ornate col-8 col-md-9 col-xl-8 col-xxl-6">
+                <div class="row justify-content-center" id="fun-facts">
+                  <div class="col-lg-10">
+                    <div class="card-deck">
+                      <div class="card border-2x border-warning rounded py-5 px-3 text-center">
+                        <img class="position-absolute r-0 t-0" src="assets/img/shapes/1.png" alt="" style="width: 30%; border-top-right-radius: 1px;" />
+                        <i class="mx-auto fa fa-4x fa-coins" style="width:70px"></i><span id="totalSupplyCounterNugz" class="d-block fs-3 mt-2 text-dark"></span>
+                        <h5>Circulating Supply</h5>
+                      </div>
+                      <div class="card border-2x border-danger rounded py-5 px-3 text-center">
+                        <img class="position-absolute b-0 r-0" src="assets/img/shapes/2.png" alt="" style="width: 70%; border-bottom-right-radius: 1px;" />
+                        <img class="mx-auto" src="assets/img/nugz512.png" width="70" alt="" /><span id="priceCounterNugz" class="d-block fs-3 mt-2 text-dark"></span>
+                        <h5>NUGZ Price</h5>
+                      </div>
+                      <div class="card border-2x border-primary rounded py-5 px-3 text-center">
+                        <img class="position-absolute t-0 l-0" src="assets/img/shapes/3.png" alt="" style="width: 70%;" />
+                        <i class="mx-auto fa fa-4x fa-dollar-sign" style="width:70px"></i><span id="marketCapCounterNugz" class="d-block fs-3 mt-2 text-dark"></span>
+                        <h5>Marketcap</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
               <!-- end of .container-->
               <div class="row justify-content-center pt-4">
@@ -265,7 +289,9 @@
                   <hr class="hr-ornate col-8 col-md-9 col-xl-8 col-xxl-6" />
                   <p class="lead">Take a hit &amp; start your trip to the moon.<i class="fa fa-rocket"></i></p>
                   <a class="btn btn-success rounded mt-2 shadow-sm" href="https://exchange.pancakeswap.finance/#/swap?outputCurrency=0xFB161ddA30991A4E48DE65F0AC4eB17809f0c6b2"><i class="fa fa-coins"></i>&nbsp;Buy BUDZ</a>
-                  <br/><br/>Verified Contract Code :  <a style="color:blue" href="https://bscscan.com/address/0xFB161ddA30991A4E48DE65F0AC4eB17809f0c6b2"><span class="addressBreak">https://bscscan.com/address/0xFB161ddA30991A4E48DE65F0AC4eB17809f0c6b2</span></a>
+                  <a class="btn btn-warning rounded mt-2 shadow-sm" href="https://exchange.pancakeswap.finance/#/swap?outputCurrency=0xfd2ede6c009ed305fe01a3410f945b580aebc37b"><i class="fa fa-coins"></i>&nbsp;Buy NUGZ</a>
+                  <br/><br/>Verified BUDZ Contract Code :  <a style="color:blue" href="https://bscscan.com/address/0xFB161ddA30991A4E48DE65F0AC4eB17809f0c6b2"><span class="addressBreak">https://bscscan.com/address/0xFB161ddA30991A4E48DE65F0AC4eB17809f0c6b2</span></a>
+                  <br/><br/>Verified NUGZ Contract Code :  <a style="color:blue" href="https://bscscan.com/address/0xfd2ede6c009ed305fe01a3410f945b580aebc37b"><span class="addressBreak">https://bscscan.com/address/0xfd2ede6c009ed305fe01a3410f945b580aebc37b</span></a>
                 </div>
               </div>
             </section>
@@ -583,15 +609,15 @@
                             <br/>
                             <label class="ls text-uppercase mb-0">Deposit BUDZ/BNB LP</label>
                             <input class="form-control" type="number" step="any" placeholder="Stake Amount" id="lpStakeAmount1"/>
-                            <a style="color:white;" class="btn btn-block btn-success mt-4" onclick="LockLp(0, 'lpStakeAmount1')">Stake LP</a>
-                            <a style="color:white;" class="btn btn-block btn-warning mt-4" onclick="UnlockLp(0)">Unstake LP</a>
+                            <a style="color:white;" class="btn btn-block btn-success mt-4" onclick="LockLp(6, 'lpStakeAmount1')">Stake LP</a>
+                            <a style="color:white;" class="btn btn-block btn-warning mt-4" onclick="UnlockLp(6)">Unstake LP</a>
                             <label class="ls text-uppercase mb-0"><i class="fa fa-info-circle"></i>&nbsp;Staking / Unstaking LP harvests any accrued rewards</label>
                             <div class="row">
                               <div class="col-6">
-                                <a style="color:white;" class="btn btn-block btn-primary mt-4" onclick="ApproveLp(0)">Approve LP</a>
+                                <a style="color:white;" class="btn btn-block btn-primary mt-4" onclick="ApproveLp(6)">Approve LP</a>
                               </div>
                               <div class="col-6">
-                                <a style="color:white;" class="btn btn-block btn-primary mt-4" href="https://exchange.pancakeswap.finance/#/add/0xFB161ddA30991A4E48DE65F0AC4eB17809f0c6b2/ETH" target="_blank">Acquire LP</a>
+                                <a style="color:white;" class="btn btn-block btn-primary mt-4" href="https://exchange.pancakeswap.finance/#/add/0xFB161ddA30991A4E48DE65F0AC4eB17809f0c6b2/BNB" target="_blank">Acquire LP</a>
                               </div>
                             </div>
                           </div>
@@ -600,13 +626,13 @@
                             <label class="ls text-uppercase mb-0" id="harvestValueBudzBnb">$0</label>
                             <span class="form-control" id="harvestBudzBnb">0</span>
                           </div>
-                          <a style="color:white;" class="btn btn-block btn-success mt-4" onclick="Harvest(0)">Harvest BUDZ&nbsp;<i class="fa fa-cannabis"></i></a>
+                          <a style="color:white;" class="btn btn-block btn-success mt-4" onclick="Harvest(6)">Harvest BUDZ&nbsp;<i class="fa fa-cannabis"></i></a>
                         </form>
                       </div>
                       </div>
                       <div class="col-md-6 mb-4 mb-lg-0">
                         <div style="border:solid lightgrey 5px; padding:15px; margin-bottom:30px">
-                        <h4>ETH/BNB LP Farm</h4>
+                        <h4>BUDZ/NUGZ LP Farm</h4>
                         <p><b>APY @ <span id="ethBnbApy"></span></b><br/>
                           <b id="ethBnbDollarPerYear"></b>
                         </p>
@@ -616,17 +642,17 @@
                             Staked Balance: <span id="activeDepositEthBnb">0</span> <span id="activeDepositValueEthBnb"></span>
 
                             <br/>
-                            <label class="ls text-uppercase mb-0">Deposit ETH/BNB LP</label>
+                            <label class="ls text-uppercase mb-0">Deposit BUDZ/NUGZ LP</label>
                             <input class="form-control" type="number" step="any" placeholder="Stake Amount" id="lpStakeAmount2"/>
-                            <a style="color:white;" class="btn btn-block btn-success mt-4" onclick="LockLp(1, 'lpStakeAmount2')">Stake LP</a>
-                            <a style="color:white;" class="btn btn-block btn-warning mt-4" onclick="UnlockLp(1)">Unstake LP</a>
+                            <a style="color:white;" class="btn btn-block btn-success mt-4" onclick="LockLp(8, 'lpStakeAmount2')">Stake LP</a>
+                            <a style="color:white;" class="btn btn-block btn-warning mt-4" onclick="UnlockLp(8)">Unstake LP</a>
                             <label class="ls text-uppercase mb-0"><i class="fa fa-info-circle"></i>&nbsp;Staking / Unstaking LP harvests any accrued rewards</label>
                             <div class="row">
                               <div class="col-6">
-                                <a style="color:white;" class="btn btn-block btn-primary mt-4" onclick="ApproveLp(1)">Approve LP</a>
+                                <a style="color:white;" class="btn btn-block btn-primary mt-4" onclick="ApproveLp(8)">Approve LP</a>
                               </div>
                               <div class="col-6">
-                                <a style="color:white;" class="btn btn-block btn-primary mt-4" href="https://exchange.pancakeswap.finance/#/add/0x2170Ed0880ac9A755fd29B2688956BD959F933F8/ETH" target="_blank">Acquire LP</a>
+                                <a style="color:white;" class="btn btn-block btn-primary mt-4" href="https://exchange.pancakeswap.finance/#/add/0xFB161ddA30991A4E48DE65F0AC4eB17809f0c6b2/0xFD2eDE6C009ED305FE01A3410f945B580aeBC37B" target="_blank">Acquire LP</a>
                               </div>
                             </div>
                           </div>
@@ -635,13 +661,13 @@
                             <label class="ls text-uppercase mb-0" id="harvestValueEthBnb">$0</label>
                             <span class="form-control" id="harvestEthBnb">0</span>
                           </div>
-                          <a style="color:white;" class="btn btn-block btn-success mt-4" onclick="Harvest(1)">Harvest BUDZ&nbsp;<i class="fa fa-cannabis"></i></a>
+                          <a style="color:white;" class="btn btn-block btn-success mt-4" onclick="Harvest(8)">Harvest BUDZ&nbsp;<i class="fa fa-cannabis"></i></a>
                         </form>
                       </div>
                       </div>
                       <div class="col-md-6 mb-4 mb-lg-0">
                         <div style="border:solid lightgrey 5px; padding:15px; margin-bottom:30px">
-                        <h4>YFI/BNB LP Farm</h4>
+                        <h4>NUGZ/BNB LP Farm</h4>
                         <p><b>APY @ <span id="yfiBnbApy"></span></b><br/>
                           <b id="yfiBnbDollarPerYear"></b>
                         </p>
@@ -651,17 +677,17 @@
                             Staked Balance: <span id="activeDepositYfiBnb">0</span> <span id="activeDepositValueYfiBnb"></span>
 
                             <br/>
-                            <label class="ls text-uppercase mb-0">Deposit YFI/BNB LP</label>
+                            <label class="ls text-uppercase mb-0">Deposit NUGZ/BNB LP</label>
                             <input class="form-control" type="number" step="any" placeholder="Stake Amount" id="lpStakeAmount3"/>
-                            <a style="color:white;" class="btn btn-block btn-success mt-4" onclick="LockLp(2, 'lpStakeAmount3')">Stake LP</a>
-                            <a style="color:white;" class="btn btn-block btn-warning mt-4" onclick="UnlockLp(2)">Unstake LP</a>
+                            <a style="color:white;" class="btn btn-block btn-success mt-4" onclick="LockLp(7, 'lpStakeAmount3')">Stake LP</a>
+                            <a style="color:white;" class="btn btn-block btn-warning mt-4" onclick="UnlockLp(7)">Unstake LP</a>
                             <label class="ls text-uppercase mb-0"><i class="fa fa-info-circle"></i>&nbsp;Staking / Unstaking LP harvests any accrued rewards</label>
                             <div class="row">
                               <div class="col-6">
-                                <a style="color:white;" class="btn btn-block btn-primary mt-4" onclick="ApproveLp(2)">Approve LP</a>
+                                <a style="color:white;" class="btn btn-block btn-primary mt-4" onclick="ApproveLp(7)">Approve LP</a>
                               </div>
                               <div class="col-6">
-                                <a style="color:white;" class="btn btn-block btn-primary mt-4" href="https://exchange.pancakeswap.finance/#/add/0x88f1A5ae2A3BF98AEAF342D26B30a79438c9142e/ETH" target="_blank">Acquire LP</a>
+                                <a style="color:white;" class="btn btn-block btn-primary mt-4" href="https://exchange.pancakeswap.finance/#/add/0xFD2eDE6C009ED305FE01A3410f945B580aeBC37B/BNB" target="_blank">Acquire LP</a>
                               </div>
                             </div>
                           </div>
@@ -670,45 +696,11 @@
                             <label class="ls text-uppercase mb-0" id="harvestValueYfiBnb">$0</label>
                             <span class="form-control" id="harvestYfiBnb">0</span>
                           </div>
-                          <a style="color:white;" class="btn btn-block btn-success mt-4" onclick="Harvest(2)">Harvest BUDZ&nbsp;<i class="fa fa-cannabis"></i></a>
+                          <a style="color:white;" class="btn btn-block btn-success mt-4" onclick="Harvest(7)">Harvest BUDZ&nbsp;<i class="fa fa-cannabis"></i></a>
                         </form>
                       </div>
                       </div>
-                      <div class="col-md-6 mb-4 mb-lg-0">
-                        <div style="border:solid lightgrey 5px; padding:15px; margin-bottom:30px">
-                        <h4>CAKE/BNB LP Farm</h4>
-                        <p><b>APY @ <span id="cakeBnbApy"></span></b><br/>
-                          <b id="cakeBnbDollarPerYear"></b>
-                        </p>
-                        <form class="zform">
-                          <div class="form-group text-left">
-                            Wallet Balance: <span id="cakeBnbBalance">0</span><br/>
-                            Staked Balance: <span id="activeDepositCakeBnb">0</span> <span id="activeDepositValueCakeBnb"></span>
 
-                            <br/>
-                            <label class="ls text-uppercase mb-0">Deposit CAKE/BNB LP</label>
-                            <input class="form-control" type="number" step="any" placeholder="Stake Amount" id="lpStakeAmount4"/>
-                            <a style="color:white;" class="btn btn-block btn-success mt-4" onclick="LockLp(3, 'lpStakeAmount4')">Stake LP</a>
-                            <a style="color:white;" class="btn btn-block btn-warning mt-4" onclick="UnlockLp(3)">Unstake LP</a>
-                            <label class="ls text-uppercase mb-0"><i class="fa fa-info-circle"></i>&nbsp;Staking / Unstaking LP harvests any accrued rewards</label>
-                            <div class="row">
-                              <div class="col-6">
-                                <a style="color:white;" class="btn btn-block btn-primary mt-4" onclick="ApproveLp(3)">Approve LP</a>
-                              </div>
-                              <div class="col-6">
-                                <a style="color:white;" class="btn btn-block btn-primary mt-4" href="https://exchange.pancakeswap.finance/#/add/0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82/ETH" target="_blank">Acquire LP</a>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="form-group text-left">
-                            <label class="ls text-uppercase mb-0">Harvestable Rewards</label>
-                            <label class="ls text-uppercase mb-0" id="harvestValueCakeBnb">$0</label>
-                            <span class="form-control" id="harvestCakeBnb">0</span>
-                          </div>
-                          <a style="color:white;" class="btn btn-block btn-success mt-4" onclick="Harvest(3)">Harvest BUDZ&nbsp;<i class="fa fa-cannabis"></i></a>
-                        </form>
-                      </div>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -761,12 +753,10 @@
             <!-- <section> begin ============================-->
 
 
-              <div style="overflow: hidden; height:100%; width:100%; text-align: center; margin:0; padding:0;"><br/><br/><br/><br/>
-                <h2 class="fs-2 fs-sm-3"> <span class="font-weight-medium">Your </span> BUDZtender <img src="assets/img/budz-icon.png" style="width:40px; transform: translate(0px,-5px);"/></h2>
-                <hr class="hr-ornate col-8 col-md-9 col-xl-8 col-xxl-6" />
-                  <a href="https://exchange.pancakeswap.finance/#/swap?outputCurrency=0xFB161ddA30991A4E48DE65F0AC4eB17809f0c6b2" target="_blank"><img class="pancakeImg" src="assets/img/pancake.png"/></a>
-                <!--<iframe scrolling="no" width="100%" height="100%" style="width:100%; height:100%" src="https://app.uniswap.org"></iframe>-->
-             </div>
+              <div style="overflow: hidden; height:100%; width:100%; text-align: center; margin:0; padding:0;">
+                  <!--<img class="pancakeImg" src="assets/img/pancake.png"/>-->
+                <iframe id="budzChart" scrolling="yes" width="100%" height="100%" style="width:100%; height:100%;" src="https://dex.guru/token/0xfb161dda30991a4e48de65f0ac4eb17809f0c6b2-bsc"></iframe>
+              </div>
 
               <!-- end of .container-->
 
@@ -783,11 +773,14 @@
               <div class="row justify-content-center">
                 <div class="col-lg-10">
                   <div class="row align-items-center">
-                    <div class="col-lg-6 text-lg-left">
+                    <div class="col-lg-4 text-lg-left">
                       <p class="fs--1 text-uppercase ls font-weight-bold mb-0">
                         Contact Us - budtender@budz.finance </p>
                     </div>
-                    <div class="col-lg-6 text-lg-right mt-2 mt-lg-0">
+                    <div class="col-lg-4 text-lg-center">
+                      <a href="https://exchange.pancakeswap.finance/#/swap?outputCurrency=0xFB161ddA30991A4E48DE65F0AC4eB17809f0c6b2" target="_blank"><button class="buyBtn btn btn-success">BUY<img style="width:25px; transform: translate(0px,-2.5px);" src="assets/img/budz-icon.png"/></button></a>&nbsp;<a href="https://exchange.pancakeswap.finance/#/swap?outputCurrency=0xfd2ede6c009ed305fe01a3410f945b580aebc37b" target="_blank"><button class="buyBtn btn btn-success">BUY<img style="width:25px; transform: translate(0px,-2.5px);" src="assets/img/nugz52.png"/></button></a>
+                    </div>
+                    <div class="col-lg-4 text-lg-right mt-2 mt-lg-0">
                       <p class="fs--1 text-uppercase ls font-weight-bold mb-0">Made with<span class="fa fa-cannabis mx-1"></span>
                       </p>
                     </div>
@@ -837,8 +830,8 @@
     <script src="assets/lib/lightbox2/js/lightbox.js"></script>
     <script src="assets/js/theme.js"></script>
     <script src="js/web3.min.js"></script>
-    <script src="js/web3Connect.js?ver=1.1.9"></script>
-    <script src="js/main.js?ver=1.2.8"></script>
+    <script src="js/web3Connect.js?ver=1.2.2"></script>
+    <script src="js/main.js?ver=1.3.3"></script>
   </body>
 
 </html>

@@ -6,6 +6,21 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
  
+ #budzChart{
+  padding-top:60px; padding-bottom:35px
+ }
+ .buyBtn{
+  width:100px;
+}
+@media(max-width:750px){
+ .buyBtn{
+   width:100px;
+ }
+ #budzChart{
+  padding-top:0px; padding-bottom:35px
+ }
+}
+
  #budrunAni{
   -webkit-animation: bud-run 37s linear infinite;
   animation: bud-run 37s linear infinite;
@@ -15842,10 +15857,10 @@ button.bg-white:focus {
 }
 
 .hr-ornate {
-  height: 8px;
-  background-image: url("../img/divider.jpg");
+  height: 10px;
+  background-image: url("../img/divider.png");
   background-size: contain;
-  background-repeat: no-repeat;
+  background-repeat: repeat-x;
   background-position: center;
   border: 0;
 }
